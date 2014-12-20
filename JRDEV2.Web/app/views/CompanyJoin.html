@@ -1,0 +1,50 @@
+﻿
+<div class="container">
+    <div class="row clearfix" ng-init="getCompany()">
+        <div class=" col-md-12 column">
+            <div class="center-block">
+            </div>
+        </div>
+    </div>
+    <div class="row clearfix">
+        <div class="col-md-3 column">
+        </div>
+        <style>
+            input.ng-invalid.ng-dirty {
+                background-color: pink;
+            }
+        </style>
+        <div class="col-md-6 column" style="border: 5px solid; padding-bottom:20px; border-bottom-left-radius:10px; border-bottom-right-radius: 10px; border-top-left-radius: 10px; border-top-right-radius: 10px ">
+            <h3 style="padding-left: 160px; padding-bottom:30px">Join {{companyInfo.companyName}}</h3>
+            <form name="joinCoForm">
+                <fieldset>
+                    <div style="padding-bottom: 20px; padding-left:20px">
+                        <label style="padding-right: 85px" for="firstName">First Name</label>
+                        <input id="firstName" type="text" required ng-model="user.firstName" placeholder="First Name" /><br />
+                    </div>
+                    <div style="padding-bottom: 20px; padding-left:20px">
+                        <label style="padding-right: 85px" for=" lastname">Last Name</label>
+                        <input id="lastName" type="text" required ng-model="user.lastName" placeholder="Last Name" /><br />
+                    </div>
+                    <div style="padding-bottom: 20px; padding-left:20px">
+                        <label style="padding-right: 120px" for="email">Email</label>
+                        <input id="email" type="text" required ng-model="user.email" placeholder="Email" /><br />
+                    </div>
+                    <div style="padding-bottom: 20px; padding-left:20px">
+                        <label style="padding-right: 90px" for="password1">Password</label>
+                        <input id="password1" type="text" required ng-model="user.password" placeholder="Password" /><br />
+                    </div>
+                    <div style="padding-bottom: 20px; padding-left:20px">
+                        <label style="padding-right: 20px" for="password2">Re-enter Password</label>
+                        <input id="password2" type="text" required placeholder="Re-Enter Password" /><br />
+                    </div>
+                </fieldset>
+                <!--<button type="submit" ng-click="addAdmin" ng-click="saveUser(user, joinCoForm)" class="btn btn-primary">Join</button>-->
+                <button type="submit" ng-disabled="joinCoForm.$invalid" ng-click="saveUser(user, joinCoForm)" class="btn btn-primary">Join</button>
+                <button type="button" ng-click="cancelEditJoin()" class="btn btn-danger">Cancel</button>
+            </form>
+        </div>
+        <div class="col-md-3 column">
+        </div>
+    </div>
+</div>

@@ -1,0 +1,158 @@
+﻿
+<div class="container">
+
+    <nav class="navbar navbar-default" role="navigation">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                <span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/app/Index.html#/front">JrDevs.co</a>
+        </div>
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav">
+                <li class="active"><a href="/app/Index.html#/front"><span class="glyphicon glyphicon-home"></span> Dashboard</a></li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li>
+                    <a href="/app/Index.html#/register">Register</a>
+                </li>
+                <li>
+                    <a href="/app/Index.html#/login">Login</a>
+                </li>
+                <li class="dropdown">
+                    <a href="/front.html" class="dropdown-toggle" data-target="#InboxDropdown" data-toggle="dropdown">
+                        <span class="glyphicon glyphicon-envelope"></span> Inbox <span class="label label-info">32</span>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a href="#"><span class="label label-warning">4:00 AM</span> Favourites Snippet</a></li>
+                        <li><a href="#"><span class="label label-warning">4:30 AM</span> Email marketing</a></li>
+                        <li>
+                            <a href="#">
+                                <span class="label label-warning">5:00 AM</span> Subscriber focused email
+                                design
+                            </a>
+                        </li>
+                        <li class="divider"></li>
+                        <li><a href="#" class="text-center">View All</a></li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a href="/front.html" class="dropdown-toggle" data-target="#UserDropdown" data-toggle="dropdown">
+                        <span class="glyphicon glyphicon-user"></span> Admin <b class="caret"></b>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a href="#"><span class="glyphicon glyphicon-user"></span> Profile</a></li>
+                        <li><a href="#"><span class="glyphicon glyphicon-cog"></span> Settings</a></li>
+                        <li class="divider"></li>
+                        <li><a href="#"><span class="glyphicon glyphicon-off"></span> Logout</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+        <!-- /.navbar-collapse -->
+    </nav>
+</div>
+<h2>Register</h2>
+
+<h4>Create a new account.</h4>
+<hr />
+
+<label for="UserName" class="col-md-2 control-label"><strong>User name</strong></label>
+<div class="col-md-10">
+    <input type="text" ng-model="register.username" class="form-control" />
+</div>
+
+<label for="RegisterPassword" class="col-md-2 control-label"><strong>Password</strong></label>
+<div class="col-md-10">
+    <input type="password" ng-model="register.password" class="form-control" />
+</div>
+
+<label for="RegisterConfirmPassword" class="col-md-2 control-label"><strong>Confirm password</strong></label>
+<div class="col-md-10">
+    <input type="password" ng-model="register.confirmPassword" class="form-control" />
+</div>
+
+<label for="FirstName" class="col-md-2 control-label"><strong>First Name</strong></label>
+<div class="col-md-10">
+    <input type="text" ng-model="register.firstName" class="form-control" />
+</div>
+
+<label for="LastName" class="col-md-2 control-label"><strong>Last Name</strong></label>
+<div class="col-md-10">
+    <input type="text" ng-model="register.lastName" class="form-control" />
+</div>
+<label for="LastName" class="col-md-2 control-label"><strong>Desired Salary</strong></label>
+<div class="col-md-10">
+    <input type="number" ng-model="register.desiredSalary" class="form-control" />
+</div>
+<label class="col-md-2 controle-label"><strong>Type</strong></label>
+<div class="col-md-10">
+    <input type="radio" name="Role" value="Administrator" ng-model="register.Roles" />Admin<br />
+    <input type="radio" name="Role" value="Company" ng-model="register.Roles" />Company<br />
+    <input type="radio" name="Role" value="User" ng-model="register.Roles" />General User<br /><br />
+</div>
+<label class="col-md-2 controle-label"><strong>Willing to Relocate</strong></label>
+<div class="col-md-10">
+    <input type="radio" name="relocate" value="true" ng-model="register.willRelocate" />Yes<br />
+    <input type="radio" name="relocate" value="false" ng-model="register.willRelocate" />No<br /><br />
+</div>
+<label class="col-md-2 controle-label"><strong>Currently Seeking a Job</strong></label>
+<div class="col-md-10">
+    <input type="radio" name="looking" value="true" ng-model="register.currentlyLooking" />Yes<br />
+    <input type="radio" name="looking" value="false" ng-model="register.currentlyLooking" />No<br /><br />
+</div>
+
+<div class="col-md-offset-2 col-md-10">
+    <button type="button" class="btn btn-default" ng-click="registerUser()">Register</button>
+</div>
+
+<p><a href="/app/Index.html#/login">Log in</a> if you already have a local account.</p>
+
+<!--<div class="container">
+
+    <div class="row">
+        <div class="col-xs-12 col-sm-8 col-md-6 col-sm-offset-2 col-md-offset-3">
+            <form role="form">
+                <h2>Please Sign Up <small>It's free and always will be.</small></h2>
+                <hr class="colorgraph">
+                <div class="row">
+                    <div class="col-xs-12 col-sm-6 col-md-6">
+                        <div class="form-group">
+                            <input type="text" name="first_name" id="first_name" class="form-control input-lg" placeholder="First Name" tabindex="1">
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-sm-6 col-md-6">
+                        <div class="form-group">
+                            <input type="text" name="last_name" id="last_name" class="form-control input-lg" placeholder="Last Name" tabindex="2">
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <input type="text" name="display_name" id="display_name" class="form-control input-lg" placeholder="Display Name" tabindex="3">
+                </div>
+                <div class="form-group">
+                    <input type="email" name="email" id="email" class="form-control input-lg" placeholder="Email Address" tabindex="4">
+                </div>
+                <div class="row">
+                    <div class="col-xs-12 col-sm-6 col-md-6">
+                        <div class="form-group">
+                            <input type="password" name="password" id="password" class="form-control input-lg" placeholder="Password" tabindex="5">
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-sm-6 col-md-6">
+                        <div class="form-group">
+                            <input type="password" name="password_confirmation" id="password_confirmation" class="form-control input-lg" placeholder="Confirm Password" tabindex="6">
+                        </div>
+                    </div>
+                </div>
+                <hr class="colorgraph">
+                <div class="row">
+                    <div class="col-xs-12 col-md-6"><input type="submit" value="Register" class="btn btn-primary btn-block btn-lg" tabindex="7"></div>
+                    <div class="col-xs-12 col-md-6"><a href="#" class="btn btn-success btn-block btn-lg">Sign In</a></div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>-->

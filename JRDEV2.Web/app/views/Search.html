@@ -1,0 +1,140 @@
+﻿<hr />
+<br />
+
+<!--<p>
+  <h3>New Search term: </h3><input type="text" ng-model="search">
+</p>-->
+<div class="col-md-12 column">
+
+    <h3 class="text-left">
+        Job Search Results
+    </h3>
+    <table class="table table-striped">
+        <tr>
+            <th>Job Title <br /><p>(click to apply)</p></th>
+            <th>Job Description</th>
+            <th>Years of Experience</th>
+            <th>Company Name</th>
+        </tr>
+
+        <tr ng-repeat="item in searchList.jobVM">
+            <td class="tdCenter"> <a href="#/jobview/{{item.jobId}}"><span>{{item.jobTitle}}</span></a></td>
+            <td class="tdCenter"> <span>{{item.description}}</span></td>
+            <td class="tdCenter"> <span>{{item.yearsExperience}}</span></td>
+            <td class="tdCenter"> <span>{{item.companyName}}</span></td>
+        </tr>
+
+    </table><br /> <br />
+    <h3 class="text-left">
+        Company(s) Search Results
+    </h3>
+    <table class="table table-striped">
+        <tr>
+            <th>Company Name</th>
+            <th>Company Description</th>
+            <th>Company Email</th>
+        </tr>
+
+        <tr ng-repeat="item in searchList.companyVM">
+            <td class="tdCenter"> <span>{{item.companyName}}</span></td>
+            <td class="tdCenter"> <span>{{item.description}}</span></td>
+            <td class="tdCenter"> <span>{{item.emailAddress}}</span></td>
+        </tr>
+
+    </table>
+
+
+</div>
+
+<!--<div class="row clearfix">
+    <div class="col-md-6 column">
+        <h3 class="text-left">
+            Search Job
+        </h3>
+        <form>
+            <label>Job:</label><br />
+            <input type="text" ng-model="search.$" class="form-control" placeholder="Search" />
+        </form><br />
+    </div>-->
+<!--ORIGINAL CODE BELOW
+    <div class="col-md-6 column">
+
+    </div>
+</div>
+<div class="row clearfix">
+<div class="col-md-2 column">
+        <br />
+
+        <label>Salary Desired:</label><br />
+
+        <select class="form-control" ng-model="salary_Min">
+            <option value="">Select</option>
+            <option value="50000">$50,000</option>
+            <option value="60000">$60,000</option>
+            <option value="70000">$70,000</option>
+            <option value="80000">$80,000</option>
+            <option value="90000">$90,000</option>
+            <option value="100000">$100,000</option>
+        </select><br />
+<label>Type of job:</label><br />
+        <select class="form-control" ng-model="search.jobTitle">
+            <option value="">Select</option>
+            <option ng-repeat="jTitle in jobArray  | unique:'jobTitle'" value="{{jTitle.jobTitle}}"> {{ jTitle.jobTitle }}</option>
+            <option ng-repeat="jTitle in jobArray  | filter:jobTitle" value="{{jTitle.jobTitle}}"> {{ jTitle.jobTitle }}</option>
+        </select>
+        <br />
+
+        <button class="btn btn-primary" ng-click="resetFilter()">Reset</button>
+    </div>
+
+    <div class="col-md-10 column">
+        <table class="table table-striped">
+            <tr>
+                <th>Job Title</th>
+                <th>Company</th>
+                <th>Job Description</th>
+                <th>Address</th>
+                <th>City</th>
+                <th>State</th>
+                <th>Zip</th>
+                <th>Telephone</th>
+                <th>E-mail</th>
+                <th>Date Created</th>
+            </tr>
+            <tr ng-show="search" ng-repeat="job in jobArray | filter:search ">
+            <tr ng-repeat="job in jobArray | filter:search">
+            <tr ng-show="search" ng-repeat="job in searchList.jobVM">
+
+                <tr ng-show="search" ng-repeat="job in jobArray | filter:search | filter:salaryFilter | startFrom:currentPage*pageSize | limitTo:pageSize">
+
+                <td><a ng-click='getJob(job.jobId)'>{{job.jobTitle}}</a></td>
+                <td>{{job.companyName}}</td>
+                <td>{{job.description}}</td>
+                <td>{{job.streetAddress}}</td>
+                <td>{{job.city}}</td>
+                <td>{{job.state}}</td>
+                <td>{{job.zipCode}}</td>
+                <td>{{job.phoneNumber}}</td>
+                <td>{{job.emailAddress}}</td>
+                <td>{{job.dateCreated | date : shortDate}}</td>
+                <td>{{job.dateCreated | date : date : shortDate}}</td>
+            </tr>
+        </table>
+        <button ng-click="prevPage()">Previous</button>
+        <button ng-click="searchJobs()">Search</button>
+        <button ng-click="nextPage()">Next</button>
+
+        <button class="btn btn-primary" ng-disabled="currentPage == 0" ng-click="currentPage=currentPage-1">
+            Previous
+        </button>
+        {{currentPage+1}}/{{numberOfPages()}}
+        <button class="btn btn-primary" ng-disabled="currentPage >= data.length/pageSize - 1" ng-click="currentPage=currentPage+1">
+            Next
+        </button>
+    </div>
+</div>
+<div class="col-md-4 column">
+    <footer>
+        <a href="#"><h6>About Us</h6></a>
+    </footer>
+</div>-->

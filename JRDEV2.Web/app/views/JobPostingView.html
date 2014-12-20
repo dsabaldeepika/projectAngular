@@ -1,0 +1,56 @@
+﻿
+<div class="row clearfix">
+    <div class="col-md-2 column">
+
+    </div>
+    <div class="col-md-4 column">
+
+    </div>
+    <div class="col-md-4 column">
+
+    </div>
+    <div class="col-md-2 column">
+
+    </div>
+</div>
+<div class="row clearfix">
+    <div class="col-md-2 column">
+
+    </div>
+    <div class="col-md-8 column" ng-init="initJobPostingView()">
+        <h3>Title</h3>
+        <strong>{{singleJob.jobTitle}}</strong>
+        <h3>Company</h3>
+        <strong>{{singleJob.companyName}}</strong>
+        <h3>Job Descrption:</h3>
+        <strong>{{singleJob.description}}</strong>
+        <h3>Job Start Date</h3>
+        <strong>{{singleJob.startDate | date : date : shortDate}}</strong>
+        <h3>Date Created</h3>
+        <strong>{{singleJob.dateCreated | date : date : shortDate}}</strong>
+        <h3>Job Id</h3>
+        <strong>{{singleJob.jobId}}</strong>
+
+        <h3>Requirements:</h3>
+        <ul>
+            <li>Years Expierience: <strong>{{singleJob.yearsExperience}}</strong></li>
+            <li>Required Programming Skills: <strong>{{singleJob.requiredProgrammingSkills}}</strong></li>
+            <li>Required Education Skills: <strong>{{singleJob.requiredEducationSkills}}</strong></li>
+        </ul>
+        <ul>
+            <li>Salary Minimum: <strong>{{singleJob.salaryMin}}</strong></li>
+            <li>Salary Maximum: <strong>{{singleJob.salaryMax}}</strong></li>
+        </ul>
+
+        <p>Posted by <a><strong>{{singleJob.companyName}}</strong></a></p><p class="help-block">5 days ago</p>
+
+        <div class="col-md-offset-4 col-md-2 column">
+
+            <button ng-click="getJobCart(singleJob.jobId)" class="btn btn-primary fa fa-shopping-cart"> Add to Cart</button>
+            <button ng-click="getJobSave(singleJob.jobId)" class="btn btn-primary">Save Job</button>
+            <button ng-click="postApplication()" class="btn btn-primary">Save Job</button>
+
+        </div>
+    </div>
+</div>
+<!--</div>-->

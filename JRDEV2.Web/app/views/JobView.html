@@ -1,0 +1,76 @@
+﻿
+<div class="container">
+    <div class="row clearfix">
+        <div class="col-md-8 column" ng-init="getJob()">
+            <h3>Company</h3>
+            <button class="btn btn-lg btn-success" ng-click="toCompanyProfile(Job.CompanyId)">{{Job.companyName}}</button>
+            <!--//ray was here\\-->
+            <h3>Title</h3>
+            <strong>{{Job.jobTitle}}</strong>
+            <h3>Job Descrption:</h3>
+            <strong>{{Job.description}}</strong>
+            <h3>Date Created</h3>
+            <strong>{{Job.dateCreated | date : date : shortDate}}</strong>
+            <h3>Job Start Date</h3>
+            <strong>{{Job.startDate | date : date : shortDate}}</strong>
+            <h3>Job End Date</h3>
+            <strong>{{Job.endDate | date : date : shortDate}}</strong>
+            <h3>Salary Minimum</h3>
+            <strong>{{Job.salaryMin}}</strong>
+            <h3>Salary Maximum</h3>
+            <strong>{{Job.salaryMax}}</strong>
+
+            <h3>Requirements:</h3>
+            <ul>
+                <li>Years Expierience: <strong>{{Job.yearsExperience}}</strong></li>
+
+            </ul>
+
+            <div>Skills Needed</div>
+            <ul ng-repeat="skill in Job.skillArray">
+                <li>{{skill}}</li>
+            </ul>
+
+            <div>
+                <!--//ray was here\\-->
+                <button ng-click="saveJobToCart()" class="btn btn-primary btn btn-large ">Add to Cart</button>
+                <button role="button" class="btn btn-primary btn btn-large" data-target="#applyForJobModal" data-toggle="modal">Apply Now</button>
+                <br />
+                <br />
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="applyForJobModal" role="dialog" aria-labelledby="applyForJobLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                <h4 class="modal-title" id="myModalLabel">
+                    Apply For Job
+                </h4>
+            </div>
+            <!--//ray was here\\-->
+            <div class="modal-body">
+
+                <label>Apply For Job Now </label><br /><br />
+                <textarea style="height:190px; width:550px; margin:0px;" ng-model="application.content" placeholder="Say Hello"></textarea>
+
+                <select ng-model="application.resumeId">
+                    <option ng-repeat="resume in Resumes" value="{{resume.resumeId}}">{{resume.heading}}</option>
+                </select>
+                <!--//ray was here\\-->
+                <!--<!--ect ect-->
+                <!--<div ng-repeat="resume in ResumeArray">-->
+                <!--<div>{{resume.title}}<input type="radio" name="chosenResume" value="resume.Id" /></div> check-->
+                <!--</div>-->
+                <!--//ray was here\\-->
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" ng-click="addApplication()" data-dismiss="modal">Submit Application</button>
+            </div>
+        </div>
+    </div>
+</div>
+

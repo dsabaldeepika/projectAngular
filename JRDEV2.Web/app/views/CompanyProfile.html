@@ -1,0 +1,146 @@
+﻿
+<div id="fb-root"></div>
+<script>
+    (function (d, s, id) {
+        var js, fjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) return;
+        js = d.createElement(s); js.id = id;
+        js.src = "//connect.facebook.net/fb_LT/all.js#xfbml=1";
+        fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));</script>
+
+<br />
+<div class="container" ng-init="getCompany()">
+    <div class="row clearfix">
+        <div class="col-md-12 column">
+            <div class="row clearfix">
+                <div class="col-md-2 column">
+                    <!--Side Bar with Company Logo, Employees, Send Message-->
+                    <div class="well">
+                        <div>
+                            <img height="130" width="130" src="{{companyInfo.logo}}" class="img-thumbnail">
+                        </div>
+                        <div>
+                            <table class="table-hover table-responsive">
+                                <tr><th><h2><strong>Contacts</strong></h2></th></tr>
+                                <tr><td>-j villa</td></tr>
+                                <tr><td>-Person2</td></tr>
+                                <tr><td>-Person34</td></tr>
+                            </table>
+                        </div><br />
+
+                        <a href="index.html#/companydashboard" class="btn btn-info btn-block">Dashboard</a>
+                   
+                        <!-- Send Message Button trigger modal -->
+                        <button class="btn btn-primary btn-block" data-toggle="modal" data-target="#myModal">
+                            Send Message
+                        </button>
+                    </div>
+                </div>
+                <div class="col-md-10 column">
+                    <div class="row clearfix">
+                        <div class="col-md-12 column">
+                            <!--Company Info-->
+                            <div style="clear: both" class="well">
+                                <!--Social Network Buttons -->
+                                <div>
+                                    <!--Twitter Button-->
+                                    <div style="float: right">
+                                        <a href="https://twitter.com/share" class="twitter-share-button" data-lang="en" data-count="horizontal" data-text="I like this company">Tweet</a>
+                                        <script>!function (d, s, id) { var js, fjs = d.getElementsByTagName(s)[0]; if (!d.getElementById(id)) { js = d.createElement(s); js.id = id; js.src = "https://platform.twitter.com/widgets.js"; fjs.parentNode.insertBefore(js, fjs); } }(document, "script", "twitter-wjs");</script>
+                                    </div>
+                                    <!--Facebook Button-->
+                                    <div style="float: right" class="fb-share-button" data-href="https://developers.facebook.com/docs/plugins/" data-type="button_count"></div>
+                                    <!--LinkedIn Button-->
+                                    <div style="float: right">
+                                        <script src="//platform.linkedin.com/in.js" type="text/javascript">
+                                            lang: en_US
+                                        </script>
+                                        <script type="IN/Share" data-counter="right">
+                                        </script>
+                                    </div>
+                                </div>
+                                <h3><strong>Company Info</strong></h3>
+                                <table>
+                                    <tr>
+                                        <td><b>{{companyInfo.companyName}}</b></td>
+                                    </tr>
+                                    <tr>
+                                        <td>{{companyInfo.streetAddress}} {{companyInfo.city}}, {{companyInfo.state}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>{{companyInfo.phoneNumber}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>{{companyInfo.emailAddress}}</td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row clearfix">
+                        <div class="col-md-12 column">
+                            <!--Company Summary-->
+                            <div class="well">
+                                <h3><strong>Description</strong></h3>
+                                {{companyInfo.description}}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row clearfix">
+                        <div class="col-md-12 column">
+                            <!--Jobs Listed-->
+                            <div class="well">
+                                <h2><strong>Jobs Listed</strong></h2><br />
+                                <table class=" table table-striped table-responsive">
+                                    <thead>
+                                        <tr>
+                                            <th width="33%"><font color="black">Title</font></th>
+                                            <th width="33%"><font color="black">City & State</font></th>
+                                            <th width="33%"><font color="black">Applicants</font></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr ng-repeat="job in jobArray">
+                                            <td>{{job.jobTitle}}</td>
+                                            <td>{{job.city}}, {{job.state}}</td>
+                                            <td><a href="/app/index.html#/jobapplist/{{job.jobId}}">(View Applicants)</a></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--Message Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title" id="myModalLabel">Messaging</h4>
+            </div>
+            <div class="modal-body">
+                <label>Subject</label>
+                <input type="text" style="height:50px; width:500px" ng-model="message.subject" placeholder="Subject" />
+            </div>
+            <div class="modal-body">
+                <div>
+                    <label>Message</label><br />
+                    <textarea rows="10" cols="70" ng-model="message.content" placeholder="Message"></textarea>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary" ng-click="sendMessage()" data-target="#messageModal">Send</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+

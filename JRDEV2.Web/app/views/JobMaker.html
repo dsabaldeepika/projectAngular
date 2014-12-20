@@ -1,0 +1,59 @@
+﻿
+<div class="container">
+    <div class="row clearfix">
+        <div class="col-md-8 column">
+            <form name="newJob" rc-submit="saveJob()" novalidate rc-disabled="rc.form.submitInProgress">
+                <h4>Title</h4>
+                <input type="text" id="jobTitleInput" ng-model="Job.jobTitle" />
+                <h4>Job Descrpition:</h4>
+                <input type="text" id="descriptionInput" ng-model="Job.description" />
+                <h4>Min Salary:</h4>
+                <input type="number" id="minSalaryInput" ng-model="Job.minSalary" />
+                <h4>Max Salary:</h4>
+                <input type="number" id="maxSalaryInput" ng-model="Job.maxSalary" />
+                <!--startdate and enddate-->
+                <hr />
+                <h3>Requirements:</h3>
+                <ul>
+                    <li>Years Expierience:<input type="number" id="YearsExperienceInput" ng-model="Job.yearsExperience" value="singleJob.yearsExperience" /></li>
+                    <!--<li>Skills Needed:<input type="text" id="SkillsNeeded" ng-model="Job.job" /></li>-->
+                </ul>
+                <input class="btn btn-primary" type="submit" data-loading-text="Please Wait..." name="Submit" value="Add Job" />
+            </form><br />
+                <br />
+                <!--//ray was here\\-->
+                <div class="col-md-8 column">
+                    <a href="index.html#/companydashboard" class="btn btn-success">Company Dashboard</a>
+                    <!--<button role="button" class="btn btn-info" data-target="index.html#/jobapplist">See Applications</button>
+            <button role="button" class="btn btn-primary" data-target="#listHistoryModal" data-toggle="modal">See History</button>
+            <button ng-click="seeClicks(singleJob.jobId)" class="btn btn-primary">see Clicks</button>-->
+                    <!--if we don't want to list clicks here or make a modul listing clicks-->
+                </div>
+</div>
+    </div>
+</div>
+
+<div class="modal fade" id="listHistoryModal" role="dialog" aria-labelledby="listHistoryLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                <h4 class="modal-title" id="myModalLabel">
+                    Past Versons of Job
+                </h4>
+            </div>
+            <!--//ray was here\\-->
+            <div class="modal-body">
+                <div ng-repeat="timeStamp in timeStampArray">
+                    <div>{{timeStamp.Date}}<button ng-click="replaceJob(timeStamp.Id)" class="btn btn-primary"> Recover</button></div>
+                </div>
+            </div>
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+
+        </div>
+    </div>
+</div>

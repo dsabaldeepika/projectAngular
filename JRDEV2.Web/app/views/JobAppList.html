@@ -1,0 +1,76 @@
+﻿
+<div class="container">
+    <div class="row clearfix">
+        <div class="col-md-12 column">
+            <div class="row clearfix">
+                <div class="col-md-2 column">
+                    <img alt="140x140" height="150" width="150" ng-src="{{companyInfo.logo}}" class="img-circle" />
+                    <div style="padding-top: 30px"><a href="index.html#/companyprofile" class="btn btn-primary btn-block">Company Profile</a></div>
+                    <div style="padding-top:20px; padding-bottom: 20px"><a href="index.html#/companyinbox"><button class="btn btn-primary btn-block">Company Inbox</button></a></div>
+                     
+                    <div class="panel-group" id="panel-393131">
+                        <div class="panel panel-default">
+                           
+                            <button class="btn btn-primary btn-block" data-toggle="collapse" data-parent="#panel-393131" href="#panel-element-302510">Administrators</button>
+                           
+                            <div id="panel-element-302510" class="panel-collapse collapse">
+                                <div class="panel-body">
+                                    Employees. .
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="col-md-8 column">
+                    <h3>
+                        Job Applicants
+                    </h3>
+                    <table class="table table-hover table-condensed">
+                        <thead>
+                            <tr>
+                                <th>
+                                    #
+                                </th>
+                                <th>
+                                    Applicants
+                                </th>
+                                <th>
+                                    Date View
+                                </th>
+                                <th>
+                                    Status
+                                </th>
+                                <th>
+
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="applicant in getApplicants">
+                                <td>
+                                    {{applicant.id}}
+                                </td>
+                                <td>
+                                    {{applicant.name}}
+                                <td>
+                                    {{applicant.resume.dateUpdated | date : date : 'shortDate'}}
+                                </td>
+                                <td>
+                                    viewed
+                                </td>
+                                <td>
+                                    <!--<button class="btn btn-primary"  type="button" ng-click="applicantView(applicant.id)">View</button>-->
+                                    <!--Link sends to Applicants review template with user ID-->
+                                    <a href="/app/index.html#/jobappview/{{applicant.id}}">View</a>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table> <button type="button" class="btn btn-info">Archive Listing</button>
+                </div>
+                <div class="col-md-2 column">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

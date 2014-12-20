@@ -1,0 +1,156 @@
+﻿
+<h2 align="center">Developer Registration</h2>
+
+<div class="jumbotron">
+    <div class="row clearfix">
+        <div class="col-md-12 column">
+            <div class="well">
+                <div ng-if="!(talentCreateForm.$invalid || isUnchanged(talent))">
+                    <p style="color:red">&nbsp;</p>
+                </div>
+                <form name="talentCreateForm" rc-submit="createTalent()" novalidate rc-disabled="rc.form.submitInProgress" role="form">
+                    <div class="form-group">
+                        <label>Name</label><br />
+                        <input type="text" ng-model="talent.FirstName" placeholder="First Name" name="FirstName" required class="form-control" style="width:250px; display: inline" />
+                        <span ng-if="talent.FirstName == null" class="required">&nbsp;*</span>
+                        <span ng-if="!(talent.FirstName == null)" class="hidden_required">&nbsp;*</span>
+                        &nbsp;&nbsp;&nbsp;&nbsp;
+                        <input type="text" ng-model="talent.LastName" placeholder="Last Name" name="LastName" required class="form-control" style="width:250px; display: inline" />
+                        <span ng-if="talent.LastName == null" class="required">&nbsp;*</span>
+                        <span ng-if="!(talent.LastName == null)" class="hidden_required">&nbsp;*</span>
+                    </div>
+                    <div class="form-group">
+                        <label>Login</label><br />
+                        <input type="text" ng-model="talent.UserName" placeholder="User Name" name="UserName" ng-pattern="/^[a-zA-Z0-9]+$/" required class="form-control" style="width:250px; display: inline" />
+                        <span ng-if="talent.UserName == null" class="required">&nbsp;*</span>
+                        <span ng-if="!(talent.UserName == null)" class="hidden_required">&nbsp;*</span>
+                        &nbsp;&nbsp;&nbsp;&nbsp;
+                        <input type="password" ng-model="talent.Password" placeholder="Password" name="Password" ng-pattern="/^[\s\S]{6,}$/" required class="form-control" style="width:250px; display: inline" />
+                        <span ng-if="talent.Password == null" class="required">&nbsp;*</span>
+                        <span ng-if="!(talent.Password == null)" class="hidden_required">&nbsp;*</span>
+                    </div>
+                    <div class="form-group">
+                        <label>Address</label><br />
+                        <input type="text" ng-model="talent.StreetAddress" size="80" placeholder="Street Address" name="StreetAddress1" required class="form-control" style="width:250px; display:inline" />
+                        <span ng-if="talent.StreetAddress == null" class="required">&nbsp;*</span>
+                        <span ng-if="!(talent.StreetAddress == null)" class="hidden_required">&nbsp;*</span>
+                        <br /><br />
+                        <input type="text" ng-model="talent.StreetAddress2" size="80" placeholder="Street Address Line 2" name="StreetAddress2" class="form-control" style="width:250px" />
+                        <br />
+                        <input type="text" ng-model="talent.City" placeholder="City" name="City" required class="form-control" style="display: inline; width:250px" />
+                        <span ng-if="talent.City == null" class="required">&nbsp;*</span>
+                        <span ng-if="!(talent.City == null)" class="hidden_required">&nbsp;*</span>
+                        &nbsp;&nbsp;&nbsp;&nbsp;
+                        <select ng-model="talent.State" name="State" required class="form-control" style="width:50px; display: inline">
+                            <option value="AL">AL</option>
+                            <option value="AK">AK</option>
+                            <option value="AZ">AZ</option>
+                            <option value="AR">AR</option>
+                            <option value="CA">CA</option>
+                            <option value="CO">CO</option>
+                            <option value="CT">CT</option>
+                            <option value="DE">DE</option>
+                            <option value="DC">DC</option>
+                            <option value="FL">FL</option>
+                            <option value="GA">GA</option>
+                            <option value="HI">HI</option>
+                            <option value="ID">ID</option>
+                            <option value="IL">IL</option>
+                            <option value="IN">IN</option>
+                            <option value="IA">IA</option>
+                            <option value="KS">KS</option>
+                            <option value="KY">KY</option>
+                            <option value="LA">LA</option>
+                            <option value="ME">ME</option>
+                            <option value="MD">MD</option>
+                            <option value="MA">MA</option>
+                            <option value="MI">MI</option>
+                            <option value="MN">MN</option>
+                            <option value="MS">MS</option>
+                            <option value="MO">MO</option>
+                            <option value="MT">MT</option>
+                            <option value="NE">NE</option>
+                            <option value="NV">NV</option>
+                            <option value="NH">NH</option>
+                            <option value="NJ">NJ</option>
+                            <option value="NM">NM</option>
+                            <option value="NY">NY</option>
+                            <option value="NC">NC</option>
+                            <option value="ND">ND</option>
+                            <option value="OH">OH</option>
+                            <option value="OK">OK</option>
+                            <option value="OR">OR</option>
+                            <option value="PA">PA</option>
+                            <option value="RI">RI</option>
+                            <option value="SC">SC</option>
+                            <option value="SD">SD</option>
+                            <option value="TN">TN</option>
+                            <option value="TX">TX</option>
+                            <option value="UT">UT</option>
+                            <option value="VT">VT</option>
+                            <option value="VA">VA</option>
+                            <option value="WA">WA</option>
+                            <option value="WV">WV</option>
+                            <option value="WI">WI</option>
+                            <option value="WY">WY</option>
+                        </select>
+                        <span ng-if="talent.State == null" class="required">&nbsp;*</span>
+                        <span ng-if="!(talent.State == null)" class="hidden_required">&nbsp;*</span>
+                        &nbsp;&nbsp;&nbsp;&nbsp;
+                        <input type="text" ng-model="talent.ZipCode" placeholder="Zip Code" name="ZipCode" ng-pattern="/^(\d{5}(-\d{4})?|[A-Z]\d[A-Z] *\d[A-Z]\d)$/" required class="form-control" style="display: inline; width:150px" />
+                        <span ng-if="talent.ZipCode == null" class="required">&nbsp;*</span>
+                        <span ng-if="!(talent.ZipCode == null)" class="hidden_required">&nbsp;*</span>
+                    </div>
+                    <div class="form-group">
+                        <label>Summary</label>
+                        <textarea ng-model="talent.Summary" rows="5" cols="80" name="Summary" class="form-control" style="width:500px"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label>Skills</label>
+                        <textarea ng-model="talent.Skills" rows="5" cols="80" name="Skills" class="form-control" style="width:500px"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label>Desired Salary</label><br />
+                        <input type="number" ng-model="talent.DesiredSalary" name="DesiredSalary"
+                               ng-minlength="0" ng-maxlength="200000" required placeholder="Salary" class="form-control" style="width:100px; display:inline" />
+                        <span ng-if="talent.DesiredSalary == null" class="required">&nbsp;*</span>
+                        <span ng-if="!(talent.DesiredSalary == null)" class="hidden_required">&nbsp;*</span>
+                    </div>
+                    <div class="form-group">
+                        <label>Will Relocate</label><br />
+                        <input type="checkbox" name="CPage" ng-model="talent.WillRelocate" value="True">
+                    </div>
+                    <div class="form-group">
+                        <label>Social Media Links</label><br />
+                        <input type="url" ng-model="talent.MainUrl" size="80" name="MainUrl" placeholder="Website" class="form-control" style="width:250px; display:inline" />
+                        &nbsp;&nbsp;&nbsp;&nbsp;
+                        <input type="url" ng-model="talent.FacebookUrl" size="80" name="FacebookUrl" placeholder="Facebook" class="form-control" style="width:250px; display:inline" />
+                        &nbsp;&nbsp;&nbsp;&nbsp;
+                        <input type="url" ng-model="talent.LinkedinUrl" size="80" name="LinkedinUrl" placeholder="LinkedIn" class="form-control" style="width:250px; display:inline" /><br /><br />
+                        <input type="url" ng-model="talent.TwitterUrl" size="80" name="TwitterUrl" placeholder="Twitter" class="form-control" style="width:250px; display:inline" />
+                        &nbsp;&nbsp;&nbsp;&nbsp;
+                        <input type="url" ng-model="talent.GoogleplusUrl" size="80" name="GoogleplusUrl" placeholder="Google+" class="form-control" style="width:250px; display:inline" />
+                    </div>
+                    <div class="form-group">
+                        <label>Photo</label>
+                        <input type="file" ng-model="talent.PicFile" size="80" name="PicFile" />
+                    </div>
+                    <div class="form-group">
+                        <input type="email" ng-model="talent.EmailAddress" size="80" placeholder="Email" name="Email" required class="form-control" style="display: inline; width: 200px" />
+                        <span ng-if="talent.EmailAddress == null" class="required">&nbsp;*</span>
+                        <span ng-if="!(talent.EmailAddress == null)" class="hidden_required">&nbsp;*</span>
+                        &nbsp;&nbsp;&nbsp;&nbsp;<input type="email" ng-model="talent.EmailAddress2" size="80" placeholder="Alternate Email" name="AltEmail" class="form-control" style="display: inline; width: 225px" />
+                    </div>
+                    <div class="form-group">
+                        <input type="tel" ng-model="talent.PhoneNumber" ng-pattern="/^(\([2-9]|[2-9])(\d{2}|\d{2}\))(-|.|\s)?\d{3}(-|.|\s)?\d{4}/" placeholder="Phone (555-555-5555)" name="Phone" required class="form-control" style="display: inline; width: 200px" />
+                        <span ng-if="talent.PhoneNumber == null" class="required">&nbsp;*</span>
+                        <span ng-if="!(talent.PhoneNumber == null)" class="hidden_required">&nbsp;*</span>
+                        &nbsp;&nbsp;&nbsp;&nbsp;<input type="tel" ng-model="talent.PhoneNumber2" ng-pattern="/^(\([2-9]|[2-9])(\d{2}|\d{2}\))(-|.|\s)?\d{3}(-|.|\s)?\d{4}$/" placeholder="Alternate Phone (555-555-5555)" name="AltPhone" class="form-control" style="display: inline; width: 225px" />
+                    </div>
+                    <input type="submit" class="btn btn-primary" value="Submit" data-loading-text="Please Wait..." ng-disabled="talentCreateForm.$invalid || isUnchanged(talent)">
+                        <div ng-if="talentCreateForm.$invalid || isUnchanged(talent)"><span style="color:red">* - Please complete all required fields</span></div>
+                    </form>
+                </div> <!--end well-->
+        </div> <!--end col-md-12 column-->
+    </div> <!--end row clearfix-->
+</div> <!--end container-->

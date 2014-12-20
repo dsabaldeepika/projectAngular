@@ -1,0 +1,89 @@
+﻿
+    <h2 align="center">My Profile</h2>
+
+    <div class="container" ng-init="getTalentVM()">
+
+            <div class="col-md-2 column">
+                <div class="well row text-center">
+                    <img alt="140x140" src="http://lorempixel.com/140/140/" class="img-circle"  />
+
+                    <br /><br />
+                    <button type="button" id="tpSendMsg" ng-show="Roles == UserRoles.COMPANYADMIN_COMPANYUSER_SITEADMIN" class="btn btn-danger btn-block" data-toggle="modal" data-target="#tpSendMsgModal">Send Message</button>
+                    <div class="modal fade" id="tpSendMsgModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                                    <h4 class="modal-title" id="myModalLabel">Create and Send a Message</h4>
+                                </div>
+                                <div class="modal-body">
+                                    <input type="text" ng-model="message.MsgSubject" size="58" placeholder="Subject" /><br />
+                                    <textarea ng-model="message.MsgBody" rows="5" cols="60" placeholder="Content"></textarea>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-danger btn-block" data-dismiss="modal">Cancel</button>
+                                    <button type="button" class="btn btn-danger btn-block" ng-click="submitMessage()" ng-hide="">Send Message</button>
+                                </div>
+                            </div> <!--end modal-content-->
+                        </div> <!--end modal-dialog-->
+                    </div> <!--end tpSendMsgModal-->
+
+                 <br/>
+                    <a href="index.html#/talentdashboard" class="btn btn-danger btn-block">My Dashboard</a>
+                </div> <!--end well-->
+            </div> <!--end col-md-2 column-->
+
+<div class="col-md-10 column">
+        <div class="well">
+            <h3 > {{TalentVM.firstName}} {{TalentVM.lastName}}</h3>
+
+            <div class="modal-body">
+
+            <p>Address: {{TalentVM.streetAddress}} {{TalentVM.city}} {{TalentVM.state}} {{TalentVM.zipCode}}</p>
+            <p>Contact: {{TalentVM.phoneNumber}} - {{TalentVM.emailAddress}}</p>
+            <p>Desired Salary: {{TalentVM.desiredSalary}}</p>
+            <p>Will Relocate? <input type="checkbox" name="CPage" ng-model="TalentVM.willRelocate" disabled></p>
+            <p>Currently Looking? <input type="checkbox" name="CPage" ng-model="TalentVM.currentlyLooking" disabled></p>
+            <p>Summary: {{TalentVM.summary}}</p>
+            <p>Skills: {{TalentVM.skills}}</p>
+
+                <br />
+                <!-- Button / modal -->
+                <button class="btn btn-info " data-target="#ClickModal" data-toggle="modal">EDIT PROFILE</button>
+                <div class="modal fade" id="ClickModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                            <h4 class="modal-title" id="myModalLabel">Edit Profile</h4>
+                            </div>
+                            <div class="modal-body">
+                            <!--<label>First Name: </label><br /><input type="text" ng-model="TalentVM.FirstName" /><br /><br /> Moved to Talent Settings - George W. 5/7/14
+                            <label>Last Name: </label><br /><input type="text" ng-model="TalentVM.LastName" /><br /><br />-->
+                            <label>Street Address: </label><br /><input type="text" ng-model="TalentVM.streetAddress" /><br /><br />
+                                <!--<label>Street Address 2: </label><br /><input type="text" ng-model="newClick.numOfClicks" /><br /><br />-->
+                            <label>City: </label><br /><input type="text" ng-model="TalentVM.city" /><br /><br />
+                            <label>State: </label><br /><input type="text" ng-model="TalentVM.state" /><br /><br />
+                            <label>Zipcode: </label><br /><input type="text" ng-model="TalentVM.zipCode" /><br /><br />
+                            <label>Phone: </label><br /><input type="text" ng-model="TalentVM.phoneNumber" /><br /><br />
+                            <label>Email: </label><br /><input type="text" ng-model="TalentVM.emailAddress" /><br /><br />
+                            <label>Desired Salary: </label><br /><input type="text" ng-model="TalentVM.desiredSalary" /><br /><br />
+                            <label>Will Relocate?  </label><input type="checkbox" name="CPage" ng-model="TalentVM.willRelocate"><br /><br />
+                            <label>Currently Looking?  </label><input type="checkbox" name="CPage" ng-model="TalentVM.currentlyLooking"><br /><br />
+                            <label>Summary </label><br /><textarea ng-model="TalentVM.summary" rows="5" cols="70" placeholder="Brief Summary"> </textarea><br /><br />
+                            <label>Skills</label><br /><textarea ng-model="TalentVM.skills" rows="5" cols="70" placeholder="Skills List"> </textarea>
+</div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-default" data-dismiss="modal">CANCEL</button>
+                                <button type="button" class="btn btn-primary" ng-click="updateTalent(TalentVM)" data-dismiss="modal">SAVE CHANGES</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Button / modal -->
+                <!--end well-->
+            </div> <!--end col-md-10 column-->
+        </div> <!--end row clearfix-->
+    </div> <!--end container-->
+    <!--Experimental Modal Above-->
+</div> <!--end container-->

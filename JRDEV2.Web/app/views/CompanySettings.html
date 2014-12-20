@@ -1,0 +1,97 @@
+﻿
+<h2 style="text-align: center;">Company Settings</h2>
+
+<div class="container" ng-init="getCompany()">
+    <div class="row clearfix">
+        <div class="col-md-2 column">
+            <div class="well row text-center">
+                <img alt="130x130" src="{{companyInfo.logo}}" class="img-thumbnail" />
+                <!--replace with ng-src="../../images/{{logofile}}"-->
+                <br />
+                <a href="index.html#/companyprofile" class="btn btn-primary btn-block">Company Profile</a>
+                <a href="index.html#/companydashboard" class="btn btn-primary btn-block">Company Dashboard</a>
+                <a href="index.html#/companyinbox" class="btn btn-primary btn-block">Company Inbox</a> <!--this link needs to be updated-->
+                <div class="well-sm">
+                    <strong>{{companyInfo.companyName}} Admins</strong><br />
+                    <ul>
+                        <li ng-repeat="user in companyUsers">
+                            {{user.FirstName}} {{user.LastName}}
+                        </li>
+                    </ul>
+                    <a href="index.html#/companyjoin" class="btn btn-primary btn-block">Add User</a>
+                    <button class="btn btn-danger btn-block" data-toggle="modal" data-target="#DelCompUserModal">Delete User</button>
+                </div> <!--end well-sm-->
+            </div> <!--end well-->
+        </div> <!--end col-md-2 column-->
+
+        <div class="col-md-10 column">
+            <div class="well">
+                <h3>Current {{companyInfo.companyName}} Settings</h3>
+
+                <div class="modal-body">
+
+                    <p>{{companyInfo.streetAddress}} {{companyInfo.city}}, {{companyInfo.state}} {{companyInfo.zipCode}}</p>
+                    <p>{{companyInfo.phoneNumber}} - {{companyInfo.emailAddress}}</p>
+                    <!--<h4>Verification: {{companyInfo.isVerified}} </h4>-->
+                    <h4>Allow View Tracking:  {{companyInfo.isVisible}}</h4>
+                    <h4>Account Status: {{companyInfo.isDeleted}}</h4>
+                    <h6>(false = account is active | true = account is inactive)</h6>
+                    <br />
+                    <!-- Button / modal -->
+                    <button class="btn btn-info " data-target="#ClickModal" data-toggle="modal">Edit Info</button>
+                    <div class="modal fade" id="ClickModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                    <h4 class="modal-title" id="myModalLabel">Edit {{companyInfo.companyName}} Info</h4>
+                                </div>
+                                <div class="modal-body">
+                                    <label>Street Address 1: </label><br /><input type="text" ng-model="companyInfo.streetAddress" /><br /><br />
+                                    <label>City: </label><br /><input type="text" ng-model="companyInfo.city" /><br /><br />
+                                    <label>State: </label><br /><input type="text" ng-model="companyInfo.state" /><br /><br />
+                                    <label>Zipcode: </label><br /><input type="text" ng-model="companyInfo.zipCode" /><br /><br />
+                                    <label>Phone: </label><br /><input type="text" ng-model="companyInfo.phoneNumber" /><br /><br />
+                                    <label>Email: </label><br /><input type="text" ng-model="companyInfo.emailAddress" /><br /><br />
+                                    <label>Edit Logo (input URL)</label><br /><input type="text" ng-model="companyInfo.logo" /><br /><br />
+                                    <label>Allow View Tracking?  </label><input type="checkbox" name="CPage" ng-model="companyInfo.isVisible"> {{companyInfo.isVisible}}<br /><br />
+                                    <label>Deactivate Account?  </label><input type="checkbox" name="CPage" ng-model="companyInfo.isDeleted"> {{companyInfo.isDeleted}}<br /><br />
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                    <button type="button" class="btn btn-primary" ng-click="updateCompanySettings(companyInfo)" data-dismiss="modal">Update Record</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Button / modal -->
+                    <!--end well-->
+                </div> <!--end col-md-10 column-->
+            </div> <!--end row clearfix-->
+        </div> <!--end container-->
+    </div>
+</div>
+
+<!--Delete Company User Modal-->
+<div class="modal fade modal-lg" id="DelCompUserModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title" id="myModalLabel">Delete User</h4>
+            </div>
+            <div class="modal-body">
+                Which user would you like to delete?
+                <ul>
+                    <li ng-repeat="user in companyUsers">
+                        {{user.FirstName}} {{user.LastName}}<br />
+                        <button class="btn btn-danger" ng-click="deleteCompanyUser()">Delete</button>
+                    </li>
+                </ul>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>

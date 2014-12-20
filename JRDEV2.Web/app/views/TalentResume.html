@@ -1,0 +1,142 @@
+﻿<!--angular.element(document).ready(getResumes());-->
+<div class="talentcontainer" ng-controller="talentCtrl" ng-init="getResumes();">
+    <div class="row clearfix">
+        <div class="col-md-12 column">
+            <div class="row clearfix">
+                <div class="col-md-12 column">
+                    <h2 class="text-center">
+                        Resumes
+                    </h2><br /><br />
+                </div>
+            </div>
+            <div class="row clearfix">
+                <div class="col-md-2 column">
+                    <img alt="140x140" src="http://lorempixel.com/140/140/" />
+                    <div style="height : 10px"></div>
+                    <div>
+                        <a href="index.html#/talentdashboard" class="btn btn-danger btn-block">Dashboard</a><p></p><p></p> <a href="index.html#/talentprofile" class="btn btn-danger btn-block">Profile</a><p></p><p></p>
+                        <a href="index.html#/inbox" class="btn btn-danger btn-block">Messages</a><p></p><p></p>
+                    </div>
+                </div>
+                <div class="col-md-10 column">
+                    <div class="row clearfix">
+                        <div class="col-md-12 column">
+                            <div class="well well-sm">
+                                <h2 style="font-weight:800">Created Resumes</h2> <br />
+                                <div class="container" ng-repeat="resume in Resumes">
+                                    <div class="col-md-6 column">
+                                        <!--Needs to be lowercase on properties-->
+                                        <h4>{{resume.heading}}</h4><br />
+                                        <p>{{resume.summary}}</p><br />
+
+                                        <hr style="height:1px;border:none;color:#333;background-color:#333;" />
+                                    </div>
+                                    <a href="#/resumedetail/{{resume.resumeId}}" class="btn btn-default btn-lg">View and Edit</a>
+                                    <!--<a href="index.html#/resumedetail/:id" class="btn btn-default btn-lg">View and Edit</a>-->
+                                </div>
+                                <button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#CreateResume">
+                                    Create New Resume
+                                </button><br /><br />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row clearfix">
+                        <div class="col-md-12 column">
+                            <div class="well well-sm">
+                                <h2 style="font-weight:800">Uploaded Resumes</h2> <br />
+                                <div class="container" ng-repeat="resume in Resumes">
+                                    <div class="col-md-6 column">
+
+                                        <h3>{{resume.heading}}</h3><br />
+                                        <h6>{{resume.datecreated}}</h6><br />
+                                        <h6>{{resume.dateupdated}}</h6><br />
+
+                                        <hr style="height:1px;border:none;color:#333;background-color:#333;" />
+                                    </div>
+                                    <button class="btn btn-default btn-lg">
+                                        View and Edit
+                                    </button>
+                                </div>
+                                <button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#UploadResume">
+                                    Upload New Resume
+                                </button><br /><br />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!--create resume modal-->
+<div class="modal fade" id="CreateResume" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title" id="myModalLabel">Create a New Resume</h4>
+            </div>
+            <div class="modal-body">
+                <div class="container center-block" style="align-content:center">
+                    <div class="row clearfix">
+                        <div class="col-md-12 column">
+                            <form role="form" method="post" action="">
+                                <div class="form-group">
+                                    <label for="resume">Resume Title (Employer will not see) </label><br /><input ng-model="newResume.Heading" width="100" name="ResumeTitle" type="text" />
+                                </div><br />
+                                <label for="summary">Summary</label>
+                                <div class="form-group">
+                                    <textarea ng-model="newResume.Summary" id="ta_plain" placeholder="" name="Summary" cols="75" rows="10"></textarea>
+                                </div><br />
+                                <label for="job">Job History</label>
+                                <div class="form-group">
+                                    <textarea ng-model="newResume.WorkExperience" id="ta_plain" placeholder="" name="WorkExperience" cols="75" rows="10"></textarea>
+                                </div><br />
+                                <label for="education">Education</label>
+                                <div class="form-group">
+                                    <textarea ng-model="newResume.Education" id="ta_plain" placeholder="" name="Education" cols="75" rows="10"></textarea>
+                                </div><br />
+                                <label for="additional">Additional Info</label>
+                                <div class="form-group">
+                                    <textarea ng-model="newResume.OtherInfo" id="ta_plain" placeholder="" name="OtherInfo" cols="75" rows="10"></textarea>
+                                <div ng-model="newResume.UserId"></div><div ng-model="newResume.UserCreatedId"></div><div ng-model="newResume.UserUpdatedId"></div>
+                                </div><br />
+                                <button type="submit" class="btn btn-success" data-dismiss="modal" ng-click="createResume()">Save</button><br />
+                            </form>
+                        </div>
+                    </div> <br />
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--upload resume modal-->
+
+<div class="modal fade" id="UploadResume" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title" id="myModalLabel">Upload a New Resume</h4>
+            </div>
+            <div class="modal-body">
+                <div class="container center-block" style="align-content:center">
+                    <div class="row clearfix">
+                        <form role="form" method="post" action="">
+                            <div class="form-group">
+                                <label for="resume">Resume Title (Employer will not see)</label><br /><input width="100" name="ResumeTitle" type="text" />
+                            </div><br />
+                            <div class="form-group">
+                                <input id="upload" type="file" name="ResumeUpload" /><br />
+                            </div><br />
+                            <button type="submit" class="btn btn-success">Save</button><br />
+                        </form>
+                    </div> <br />
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,137 @@
+﻿
+<div class="container" ng-init="getCompany()">
+    <div class="row clearfix">
+        <div class="col-md-2 column">
+
+
+            <div class="well row text-center">
+                <img ng-src="{{companyInfo.logo}}" class="img-thumbnail" height="130" width="130" alt="Company Logo" />
+                <h3 style="text-align: center;"><b>Company Dashboard</b></h3>
+                <br />
+                <a href="index.html#/companyprofile" class="btn btn-primary btn-block">Company Profile</a>
+                <a href="index.html#/companysettings" class="btn btn-primary btn-block">Company Settings</a>
+                <a href="index.html#/companyinbox" class="btn btn-primary btn-block">Company Inbox</a>
+
+                <div class="well-sm">
+                    <strong>{{companyInfo.companyName}} Admins</strong><br />
+                    <ul ng-repeat="user in companyUsers">
+                        <li>
+                            {{user.FirstName}} {{user.LastName}}
+                        </li>
+                    </ul>
+                </div> <!--end well-sm-->
+            </div> <!--end well-->
+        </div> <!--end col-md-2 column-->
+
+        <div class="col-md-10 column">
+            <form>
+                <div><input type="button" id="prev" class=" btn-lg btn-success" ng-click="Previous()" value="Previous" /></div>
+                <div><input type="button" id="next" class=" btn-lg btn-success" ng-click="Next()" value="Next" /></div>
+            </form>
+            <div class="well">
+                <h3 style="text-align:center"><b><u>{{companyInfo.companyName}}</u></b> </h3>
+
+                <h4 style="float:left">Jobs Listed</h4>
+
+                <br />
+                <table style="width:100%">
+                    <tr>
+                        <th>ID</th>
+                        <th>Title</th>
+                        <!--<th>Dept</th>-->
+                        <th># Applicants</th>
+                        <th># Views</th>
+                        <th>$ Budget</th>
+                        <th></th>
+                        <th></th>
+                    </tr>
+
+                    <tr ng-repeat="job in jobArray">
+                        <td>{{job.jobId}}</td>
+                        <td>{{job.jobTitle}}</td>
+                        <!--<td>{{job.jobDept}}</td>-->
+                        <td>{{job.numOfApplicants}}</td>
+                        <td>{{job.numOfClicks}}</td>
+                        <td>{{job.jobBudget | number:2}}</td>
+                        <td><a href="index.html#/jobview/{{job.jobId}}" /><button class="btn btn-info">View & Edit</button></td>
+                        <!--<td><a href="index.html#/jobview" class="btn-xs btn-info">View</a></td>-->
+                        <td><button class="btn btn-primary" data-toggle="modal" data-target="#jobModal" ng-click="setSelectedJob(job)">Job History</button></td>
+                        <!--a href="/app/index.html#/jobapplist/{{job.jobId}}"-->
+                    </tr>
+                </table>
+                <br />
+
+                <a href="index.html#/jobmaker" class="btn btn-primary">Add a New Job </a>
+                <button class="btn btn-info" data-toggle="modal" data-target="#myModal">Archived Listings</button>
+                <br />
+            </div> <!--end well-->
+        </div> <!--end col-md-10 column-->
+    </div> <!--end row clearfix-->
+</div> <!--end container-->
+<!-- Archived List Modal -->
+<div class="modal fade modal-lg" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title" id="myModalLabel">Archived Jobs</h4>
+            </div>
+            <div class="modal-body">
+                <table style="width:100%">
+                    <tr>
+                        <th>ID</th>
+                        <th>Title</th>
+                        <!--<th>Dept</th>-->
+                        <th>Applicants</th>
+                        <th>Views</th>
+                        <th>End Date</th>
+                    </tr>
+                    <tr ng-repeat="job in jobArray">
+                        <td>{{job.jobId}}</td>
+                        <td>{{job.jobTitle}}</td>
+                        <!--<td>{{job.jobDept}}</td>-->
+                        <td>{{job.numOfApplicants}}</td>
+                        <td>{{job.numOfClicks}}</td>
+                        <td>{{job.endDate}}</td>
+                    </tr>
+                </table>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Job History Modal -->
+<div class="modal fade" id="jobModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title" id="myModalLabel">Job History</h4>
+            </div>
+            <div class="modal-body">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Job</th>
+                            <th>Edited By</th>
+                            <th>Date Edited</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>{{selectedJob.jobTitle}}</td>
+                            <td>user</td>
+                            <td>today</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>

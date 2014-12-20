@@ -1,0 +1,74 @@
+﻿
+<div class="row clearfix" ng-init="getTalentVM()">
+    <div class="col-md-2 column">
+        <h4>{{TalentVM.firstName}}'s Settings</h4>
+        <img alt="140x140" src="http://lorempixel.com/140/140/" class="img-circle" /><br /><p></p>
+        <!-- <button id="modal-667458" role="button" class=" btn btn-success">Back To Profile</button>-->
+        <a href="index.html#/talentdashboard" class="btn btn-danger">My Dashboard</a>
+    </div>
+</div>
+<!---------  Start Talent Settings Table               --->
+
+<div class="container">
+    <div class="row clearfix">
+        <div class="col-md-12 column">
+            <h3>
+                Your Control Settings
+            </h3>
+
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+
+                        <th>
+                            Settings
+                        </th>
+
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="active">
+
+                        <td>
+                            My Username: <strong>{{TalentVM.userName}}</strong>
+                        </td>
+                        <td>
+                            My First Name: <strong>{{TalentVM.firstName}}</strong>
+                        </td>
+                        <td>
+                            My Last Name: <strong>{{TalentVM.lastName}}</strong>
+                        </td>
+                        <td>
+                            I am looking for a job: <strong>{{TalentVM.currentlyLooking}}</strong>
+                        </td>
+                        <td>
+                            I am willing to relocate: <strong>{{TalentVM.willRelocate}}</strong>
+                        </td>
+                        <td>
+                            <button class="btn btn-info " data-target="#ClickModal" data-toggle="modal">Edit Info</button>
+                        </td>
+            </table>
+
+
+            <div class="modal fade" id="ClickModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                            <h4 class="modal-title" id="myModalLabel">Edit {{TalentVM.firstName}} {{TalentVM.lastName}}'s Settings</h4>
+                            <div class="modal-body">
+                                <label>User Name: </label><br /><input type="text" ng-model="TalentVM.UserName" /><br /><br />
+                                <label>First Name: </label><br /><input type="text" ng-model="TalentVM.FirstName" /><br /><br />
+                                <label>Last Name: </label><br /><input type="text" ng-model="TalentVM.LastName" /><br /><br />
+                                <label>Will Relocate?  </label><input type="checkbox" name="CPage" ng-model="TalentVM.willRelocate"> <br /><br />
+                                <label> Currently Looking?  </label><input type="checkbox" name="CPage" ng-model="TalentVM.currentlyLooking"> <br /><br />
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-warning" data-dismiss="modal">Cancel</button>
+                                <button type="button" class="btn btn-success" ng-click="updateTalent(TalentVM)">Update Settings</button>
+                                <button type="button" class="btn btn-danger" ng-click="deleteProfile()">Delete My Profile</button>
+                            </div>
+                            </div>
+                    </div>
+                </div>
+            </div>

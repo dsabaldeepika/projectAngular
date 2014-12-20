@@ -1,0 +1,235 @@
+﻿<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html class="no-js" ng-app="jrdevwebApp">
+<!--<![endif]-->
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title ng-bind="'JRDevs.Co - ' + $root.title">JRDevs.Co - Welcome</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width">
+    <link href='http://fonts.googleapis.com/css?family=Unica+One' rel='stylesheet' type='text/css'>
+    <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+    <link rel="shortcut icon" type="image/x-icon" href="favicon.ico" />
+    <link rel="stylesheet" href="../../Content/bootstrap.css" />
+    <link href="styles/main.css" rel="stylesheet" />
+    <script>
+        function closeLoginModal() {
+            $('#loginModal').modal('hide');
+        };
+    </script>
+</head>
+<body>
+    <!--[if lt IE 7]>
+      <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+    <![endif]-->
+    <!-- Add your site or application content here -->
+
+    <nav class="navbar navbar-default" role="navigation">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div ng-controller="LoginController" class="container" ng-init="getUserNoRedirect()">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="/app/index.html#/front">JrDevs.co</a>
+                <a class="navbar-brand" href="#/jrdevsabout">About Us</a>
+                <a class="navbar-brand" href="/app/index.html#/faq">FAQ</a>
+
+                <form novalidate class="form-search form-horizontal" style="margin-top:8px; margin-left:70px;float: left; width:290px">
+                    <div class="input-group">
+                        <input type="text" ng-model="searchstring" class="form-control search-query" placeholder="Search Jobs or Companies" style="width: 250px; border-bottom-left-radius: 20px; border-top-left-radius: 20px; font-size:10px; height:30px" />
+                        <div class="input-group-btn" style="float: left">
+                            <a href="index.html#/search/{{searchstring}}">
+                                <button class="btn btn-default" type="submit" style="border-top-right-radius:20px; border-bottom-right-radius: 20px; color: #808080; height:30px">
+                                    <span class="glyphicon glyphicon-search" style="font-size:12px"></span>
+                                </button>
+                            </a>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+
+                <div class="nav navbar-nav navbar-right" ng-show="!getIsLoggedIn()">
+
+                    <a style="cursor: pointer" class="navbar-brand" data-toggle="modal" data-target="#registerModal">Register</a>
+                    <a style="cursor: pointer" class="navbar-brand" data-toggle="modal" data-target="#loginModal">Log In</a>
+                    <!--<a style="cursor: pointer" class="navbar-brand" data-toggle="modal" data-target="#forgotModal">Forgot Username/Password?</a>-->
+                </div>
+                <div ng-show="getIsLoggedIn()">
+                    <ul class="nav navbar-nav navbar-right">
+                        <li class="dropdown" ng-controller="messageCtrl">
+                            <a href="/front.html" class="dropdown-toggle" data-target="#InboxDropdown" style="color: white; background-color: inherit;">
+                                <span class="glyphicon glyphicon-envelope" style="color: white;"></span> Inbox <span ng-if="unreadCount > 0" class="label label-info">{{unreadCount}}</span>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li ng-repeat="message in messageArray | orderBy: '-dateCreated' | limitTo: 5"><a href="#/inbox/{{message.messageId}}" ng-if="!message.dateRead"><span class="label label-warning">Unread</span> {{message.subject}} </a><a href="#/inbox/{{message.messageId}}" ng-if="message.dateRead"><span class="label label-info">&nbsp;&nbsp;Read&nbsp;&nbsp;</span> {{message.subject}}</a><br /><span class="divider"></span></li>
+                                <!--<li><a href="javascript:void(0)"><span class="label label-warning">4:00 AM</span> Favourites Snippet</a></li>-->
+                                <li class="divider"></li>
+                                <li><a href="index.html#/inbox" class="text-center">View All</a></li>
+                            </ul>
+                        </li>
+                        <li class="dropdown">
+                            <a href="/front.html" class="dropdown-toggle" data-target="#UserDropdown" style="color: white; background-color: inherit;">
+                                <span class="glyphicon glyphicon-user" style="color: white;"></span><b class="caret"></b>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a href="javascript:void(0)" ng-click="gotoDashboard()"><span class="glyphicon glyphicon-user"></span> Dashboard</a></li>
+                                <li><a href="javascript:void(0)" ng-click="gotoSettings()"><span class="glyphicon glyphicon-cog"></span> Settings</a></li>
+                                <li class="divider"></li>
+                                <li><a href="javascript:void(0)" ng-click="logoff()"><span class="glyphicon glyphicon-off"></span> Logout</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <!--login modal-->
+            <div class="modal fade navbar-modal" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="margin-top: 15px">
+                <div class="modal-dialog" style="width: 380px; margin: auto;">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                            <h3 class="modal-title" id="myModalLabel">Log In</h3>
+                        </div>
+                        <div class="modal-body">
+                            <form name="form" class="form-horizontal" role="form" rc-submit="processLogin()" novalidate rc-disabled="rc.form.submitInProgress">
+                                <div class="form-group" style="margin-right:50px">
+                                    <input type="text" id="username" ng-model="login.username" class="form-control" placeholder="Username" />
+                                </div>
+                                <div class="form-group" style="margin-right:50px">
+                                    <input type="password" id="password" ng-model="login.password" class="form-control" placeholder="Password" />
+                                </div>
+                                <div class="form-group" style="margin-top: -5px; margin-left:5px">
+                                    <div class="checkbox">
+                                        <label>
+                                            <input type="checkbox"> Remember me
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <a style="cursor: pointer; float:right; margin-right:15px" data-toggle="modal"
+                                       data-target="#forgotModal" onclick="closeLoginModal()">
+                                        Forgot Login?
+                                    </a>
+                                    <input type="submit" value="Sign In" class="btn btn-primary"
+                                           data-loading-text="Please Wait...">
+
+
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--Forgot modal-->
+            <div class="modal fade navbar-modal" id="forgotModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="margin-top: 45px">
+                <div class="modal-dialog" style="width: 400px; margin: auto;">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                            <h3 class="modal-title" id="myModalLabel">Forgot Username or Password?</h3>
+                        </div>
+                        <div class="modal-body">
+                            <form name="form" ng-submit="processLogin()" novalidate class="form-horizontal" role="form">
+                                <div class="form-group" style="margin-right:50px">
+                                    <input type="text" id="email" ng-model="login.username" class="form-control" placeholder="Email" />
+                                </div>
+                                <div class="form-group">
+                                    <input type="submit" value="Send" class="btn btn-primary" ng-disabled="isLoading">
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <div ng-controller="globalCtrl" class="modal fade" id="registerModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="margin-top: 15px">
+        <div class="modal-dialog" style="width: 400px; margin: auto;">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h3 class="modal-title" id="myModalLabel">Create Account</h3>
+                </div>
+                <div class="modal-body">
+
+                    <blockquote>
+                        <h4>Have a job to post?</h4>
+                        <button class="btn btn-primary" ng-click="companyRedirect()" data-dismiss="modal">Create a Company Profile</button>
+                        <h4>Looking for a job?</h4>
+
+                        <button class="btn btn-primary" ng-click="talentRedirect()" data-dismiss="modal">Create a Profile</button>
+                    </blockquote>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <!--<form novalidate class="form-search">
+            <div class="col-md-4 column">
+                <div class="input-group">
+                    <i class="icon-search"></i>
+                    <input type="text" ng-model="searchstring" class="form-control search-query" placeholder="Search Jobs or Companies" style="border-bottom-left-radius: 20px; border-top-left-radius: 20px" />
+                    <div class="input-group-btn">
+                        <a href="index.html#/search/{{searchstring}}">
+                            <button class="btn btn-default" type="submit" style="border-top-right-radius:20px; border-bottom-right-radius: 20px">
+                                <span class="glyphicon glyphicon-search"></span>
+                            </button>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <a href="index.html#/search/{{searchstring}}">
+
+                <i class="icon-search"></i>
+                <input type="submit" class="btn btn-danger" value="Search" />
+            </a>
+
+        </form>-->
+        <div class="main-body" ng-view="">
+        </div>
+    </div>
+
+    <!-- Google Analytics: change UA-XXXXX-X to be your site's ID -->
+    <script>
+        (function (i, s, o, g, r, a, m) {
+            i['GoogleAnalyticsObject'] = r; i[r] = i[r] || function () {
+                (i[r].q = i[r].q || []).push(arguments)
+            }, i[r].l = 1 * new Date(); a = s.createElement(o),
+            m = s.getElementsByTagName(o)[0]; a.async = 1; a.src = g; m.parentNode.insertBefore(a, m)
+        })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+
+        ga('create', 'UA-XXXXX-X');
+        ga('send', 'pageview');
+    </script>
+
+    <script src="../../Scripts/angular.js"></script>
+    <script src="../../Scripts/jquery-1.10.2.js"></script>
+    <script src="../../Scripts/bootstrap.js"></script>
+    <script src="../../Scripts/angular-resource.js"></script>
+    <script src="../../Scripts/angular-cookies.js"></script>
+    <script src="../../Scripts/angular-sanitize.js"></script>
+    <script src="../../Scripts/angular-route.js"></script>
+    <script src="../../Scripts/angular-ui/ui-bootstrap-tpls.js"></script>
+    <script src="../../Scripts/angular-ui/ui-utils.min.js"></script>
+    <script src="scripts/lodash.underscore.js"></script>
+    <script src="scripts/disabledhelper/rcSubmit.js"></script>
+    <script src="scripts/disabledhelper/rcDisabled.js"></script>
+    <script src="scripts/app.js"></script>
+    <script src="scripts/services/services.js"></script>
+    <script src="scripts/controllers/main.js"></script>
+    <script src="scripts/controllers/CompanyController.js"></script>
+    <script src="scripts/controllers/GlobalController.js"></script>
+    <script src="scripts/controllers/talentController.js"></script>
+    <script src="scripts/controllers/LoginController.js"></script>
+    <script src="scripts/controllers/SearchController.js"></script>
+    <script src="scripts/controllers/JobController.js"></script>
+    <script src="scripts/controllers/messageController.js"></script>
+</body>
+</html>

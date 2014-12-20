@@ -1,0 +1,75 @@
+﻿<div class="talentcontainer" ng-init="getMessages()">
+    <div class="row clearfix">
+        <div class="col-md-12 column">
+            <h2 class="text-center">
+                My Inbox
+            </h2>
+        </div>
+    </div>
+</div>
+<div class="row clearfix">
+    <div class="col-md-2 column">
+        <img alt="140x140" src="http://lorempixel.com/140/140/" />
+        <div style="height : 10px"></div>
+        <div>
+            <a href="index.html#/talentprofile" class="btn btn-danger btn-block">View My Profile</a>
+            <p></p><p></p>
+            <a href="index.html#/talentresume" class="btn btn-danger btn-block">View My Resumes</a>
+            <p></p><p></p>
+            <a href="index.html#/talentsettings" class="btn btn-danger btn-block">My Settings</a>
+        </div>
+    </div>
+
+    <div class="col-md-10 column">
+        <form role="form">
+            <div class="well well-sm">
+                <h3>Messages</h3>
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>Read Status</th>
+                            <th>Subject</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="message in messageArray | orderBy: '-dateCreated' " style="list-style:none">
+                            <td ng-if="!message.dateRead"><a href="#/inbox/{{message.messageId}}">Unread</a></td>
+                            <td ng-if="message.dateRead"><a href="#/inbox/{{message.messageId}}">Read</a></td>
+                            <td><a href="#/inbox/{{message.messageId}}">{{message.subject}}</a></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </form>
+
+        <div class="well well-sm">
+            <h3>Job Cart</h3>
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Product</th>
+                        <th>Payment Taken</th>
+                        <th> Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>1 </td>
+                        <td> TB - Monthly</td>
+                        <td> 01/04/2012 </td>
+                        <td> Default </td>
+                    </tr>
+                    <tr>
+                        <td>1 </td>
+                        <td> TB - Monthly</td>
+                        <td> 01/04/2012 </td>
+                        <td> Default </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+
+</div>

@@ -1,0 +1,11 @@
+﻿<form name="form" ng-submit="processLogin()" novalidate>
+    <label>Username</label><br />
+    <input type="text" id="username" ng-model="login.username" /><br />
+    <label>Password</label><br />
+    <input type="password" id="password" ng-model="login.password" /><br />
+    <input type="submit" value="Sign In">
+
+</form>
+
+<input type="button" value="Log Off" data-ng-click="logoff()">
+<!--is second login button necessary or was it designed for a separate field input to be used?-->

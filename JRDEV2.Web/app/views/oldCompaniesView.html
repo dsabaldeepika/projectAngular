@@ -1,0 +1,308 @@
+﻿
+<div class="test">
+</div>
+<div class="row clearfix">
+    <div class="col-md-2 column">
+        <img alt="140x140" src="http://lorempixel.com/140/140/" class="img-circle" /><br /><p></p>
+        <button class="btn btn-warning fa fa-wrench" data-target="#EditModal" data-toggle="modal"> Edit Profile</button>
+        <button class="btn btn-warning fa fa-wrench" data-target="#EditJob" data-toggle="modal">Add Job!!!!!</button>
+        <!--edit spelling of button ^^ -->
+
+        <h4>Payment History</h4>
+        <label for="Company Name">Name: {{companyInfo.companyName}}</label><br /><input type="text" ng-model="click.ipAddress" /><br /><br />
+        <button role="button" class="btn btn-success glyphicon glyphicon-usd" data-target="#PaymentHistoryModal" data-toggle="modal"></button>
+        <button role="button" class="btn btn-warning glyphicon glyphicon-usd" ng-click="addNewClick(2)">Click Test</button>
+        <div class="modal fade" id="EditModal" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header-warning">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                        <h1 class="modal-title" id="myModalLabel">
+                            <span class="fa fa-wrench"></span> Edit Company Profile
+                        </h1>
+                    </div>
+
+                    <div class="modal-body">
+
+                        <h4><strong>Name:</strong> {{companyInfo.companyName}}</h4><input type="text" ng-model="companyInfo.companyName" /><br /><br />
+                        <h4><strong>Address:</strong> {{companyInfo.streetAddress}}</h4><input type="text" ng-model="companyInfo.streetAddress" /><br /><br />
+                        <h4><strong>City:</strong> {{companyInfo.city}}</h4><input type="text" ng-model="companyInfo.city" /><br /><br />
+                        <h4><strong>State:</strong> {{companyInfo.state}}</h4><input type="text" ng-model="companyInfo.state" /><br /><br />
+                        <h4><strong>Zipcode:</strong> {{companyInfo.zipCode}}</h4><input type="text" ng-model="companyInfo.zipCode" /><br /><br />
+                        <h4><strong>Phone:</strong> {{companyInfo.phoneNumber}}</h4><input type="text" ng-model="companyInfo.phoneNumber" /><br /><br />
+                        <h4><strong>Email:</strong> {{companyInfo.emailAddress}}</h4><input type="text" ng-model="companyInfo.emailAddress" />
+                        <!--<br />
+                        <input type="file" id="exampleInputFile" />
+                        <p class="help-block">
+                            Upload a new Logo: .jpg and .png ONLY!
+                        </p>-->
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button> <button type="button" class="btn btn-primary" ng-click="updateCompany(companyInfo.companyId, companyInfo)" data-dismiss="modal">Save changes</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="modal fade" id="EditJob" role="dialog" aria-labelledby="myJobLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                        <h4 class="modal-title" id="myModalLabel">
+                            Edit Company Profile
+                        </h4>
+                    </div>
+
+                    <div class="modal-body">
+
+                        <label>Job Title: </label><br /><input type="text" ng-model="addJobForm.jobTitle" /><br /><br />
+                        <label>Job Description: </label><br /><input type="text" ng-model="addJobForm.description" /><br /><br />
+                        <label>Company Name: </label><br /><input type="text" ng-model="addJobForm.companyName" /><br /><br />
+
+                        <label>City: </label><br /><input type="text" ng-model="addJobForm.city" /><br /><br />
+                        <label>Experience Required:</label><br /><input type="text" ng-model="addJobForm.yearsExperience" /><br /><br />
+                        <label>Required Skills: </label><br /><input type="text" ng-model="addJobForm.requiredProgrammingSkills" /><br /><br />
+                        <label>Required Education: </label><br /><input type="text" ng-model="addJobForm.requiredEducationSkills" /><br /><br />
+                        <label>Salary Minimum: </label><br /><input type="text" ng-model="addJobForm.salaryMin" /><br /><br />
+                        <label>Salary Maximum: </label><br /><input type="text" ng-model="addJobForm.salaryMax" /><br /><br />
+                        <label>User ID: </label><br /><input type="text" ng-model="addJobForm.userId" /><br /><br />
+                        <label>JobStatus ID: </label><br /><input type="text" ng-model="addJobForm.jobStatusId" />
+
+                        <!--<br />
+                        <input type="file" id="exampleInputFile" />
+                        <p class="help-block">
+                            Upload a new Logo: .jpg and .png ONLY!
+                        </p>-->
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button> <button type="button" class="btn btn-primary" ng-click="addJob()" data-dismiss="modal">Save changes</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <div class="col-md-4 column">
+        <input type="search" class="form-control" placeholder="Search Applicants.." /><br />
+        <h4>{{companyInfo.companyName}}</h4>
+        <p>{{companyInfo.streetAddress}} {{companyInfo.city}}, {{companyInfo.state}} </p>
+        <p>{{companyInfo.phoneNumber}} - {{companyInfo.emailAddress}}</p>
+
+        <hr />
+
+        <div class="modal fade" id="PaymentHistoryModal" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header-success">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                        <h1 class="modal-title" id="myModalLabel">
+                            <span class="glyphicon glyphicon-usd"></span> Payment History
+                        </h1>
+                    </div>
+                    <div class="modal-body">
+                        Payment History Goes Here
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6 column">
+        <h2 class="text-center">Messages</h2><br />
+        <p>Messages show up here</p>
+    </div>
+</div><br />
+<div class="row clearfix">
+    <div class="col-md-12 column">
+        <h3 class="text-center">
+            List of your Posted Jobs:
+        </h3>
+        <div class="row clearfix">
+            <div class="col-md-2 column">
+            </div>
+
+            <div class="col-md-8 column">
+                <!--<ol>
+                    <li>
+                        <div class="well">
+                            <div class="fbdiv">
+                                <a href="#">Job #1 </a><div class="fb-share-button" data-href="https://developers.facebook.com/docs/plugins/" data-type="button"></div>
+                            </div>
+                            <div class="tweetdiv" style="padding-left: 100px; margin-top: -20px;">
+                                <a href="https://twitter.com/share" class="twitter-share-button" data-lang="en">Tweet</a>
+                            </div>
+                            <div class="lidiv" style="padding-left: 185px; margin-top: -25px;">
+                                <script src="//platform.linkedin.com/in.js" type="text/javascript">lang: en_US</script>
+                                <script type="IN/Share">
+                                </script>
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <a href="#">Job #2</a><span class="btn btn-lg fa fa-facebook-square"></span><span class="btn btn-lg fa fa-twitter-square"></span><span class="btn btn-lg fa fa-linkedin-square"></span>
+                    </li>
+                    <li>
+                        <a href="#">Job #3</a><span class="btn btn-lg fa fa-facebook-square"></span><span class="btn btn-lg fa fa-twitter-square"></span><span class="btn btn-lg fa fa-linkedin-square"></span>
+                    </li>
+                    <li>
+                        <a href="#">Job #4</a><span class="btn btn-lg fa fa-facebook-square"></span><span class="btn btn-lg fa fa-twitter-square"></span><span class="btn btn-lg fa fa-linkedin-square"></span>
+                    </li>
+                    <li>
+                        <a href="#">Job #5</a><span class="btn btn-lg fa fa-facebook-square"></span><span class="btn btn-lg fa fa-twitter-square"></span><span class="btn btn-lg fa fa-linkedin-square"></span>
+                    </li>
+                    <li>
+                        <a href="#">Job #6</a><span class="btn btn-lg fa fa-facebook-square"></span><span class="btn btn-lg fa fa-twitter-square"></span><span class="btn btn-lg fa fa-linkedin-square"></span>
+                    </li>
+                    <li>
+                        <a href="#">Job #7</a><span class="btn btn-lg fa fa-facebook-square"></span><span class="btn btn-lg fa fa-twitter-square"></span><span class="btn btn-lg fa fa-linkedin-square"></span>
+                    </li>
+                    <li>
+                        <a href="#">Job #8</a><span class="btn btn-lg fa fa-facebook-square"></span><span class="btn btn-lg fa fa-twitter-square"></span><span class="btn btn-lg fa fa-linkedin-square"></span>
+                    </li>
+                    <li>
+                        <a href="#">Job #9</a><span class="btn btn-lg fa fa-facebook-square"></span><span class="btn btn-lg fa fa-twitter-square"></span><span class="btn btn-lg fa fa-linkedin-square"></span>
+                    </li>
+                    <li>
+                        <a href="#">Job #10</a><span class="btn btn-lg fa fa-facebook-square"></span><span class="btn btn-lg fa fa-twitter-square"></span><span class="btn btn-lg fa fa-linkedin-square"></span>
+                    </li>
+                </ol>-->
+                <form>
+                    <label>Job:</label><br />
+                    <input ng-model="search" class="form-control" placeholder="Search a Job.." />
+                </form><br />
+
+                <table class="table table-striped">
+                    <tbody>
+                        <tr>
+                            <th>Job ID </th>
+                            <th>Job Title</th>
+                            <th>Job Description</th>
+                            <th>Job City</th>
+                            <th>
+                                Date Created <a href="" ng-click="predicate = 'dateCreated'; reverse=false"><span class="glyphicon glyphicon-chevron-up"></span></a>
+                                <a href="" ng-click="predicate = '-dateCreated'; reverse=false"><span class="glyphicon glyphicon-chevron-down"></span></a>
+                            </th>
+                        </tr>
+                        <tr ng-repeat="job in jobArray | orderBy: priority">
+                            <td>{{job.jobId}}</td>
+                            <td><a ng-click='getJob(job.jobId)'>{{job.jobTitle}}</a></td>
+                            <td>{{job.description}}</td>
+                            <td>{{job.city}}</td>
+                            <td>{{job.dateCreated}}</td>
+                            <td ng-hide="true">{{job.startDate}}</td>
+
+                            <td ng-hide="true">{{job.yearsExperience}}</td>
+                            <td ng-hide="true">{{job.requiredProgrammingSkills}}</td>
+                            <td ng-hide="true">{{job.requiredEducationSkills}}</td>
+                            <td ng-hide="true">{{job.salaryMin}}</td>
+                            <td ng-hide="true">{{job.salaryMax}}</td>
+                        </tr>
+
+                    </tbody>
+                </table>
+            </div>
+            <div class="col-md-2 column">
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row clearfix">
+    <div class="col-md-6 column">
+        <h2 class="text-center">
+            Employee List :
+            <button role="button" class=" btn btn-primary glyphicon glyphicon-plus" data-target="#AddEmployeeModal" data-toggle="modal"></button>
+        </h2>
+        <div class="modal fade text-left" id="AddEmployeeModal" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header-primary">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                        <h1 class="modal-title" id="myModalLabel">
+                            <span class="glyphicon glyphicon-plus"></span> Add new employee
+                        </h1>
+                    </div>
+                    <div class="modal-body">
+                        <h4><strong>Employee Name:</strong></h4>
+                        <input type="text" class="form-control" placeholder="New Employee's Name.." /><br />
+                        <h4><strong>Employee Email:</strong></h4>
+                        <input class="form-control" placeholder="New Employee's Email.." /><br />
+                        <h4><strong>Department:</strong></h4>
+                        <input type="text" class="form-control" placeholder="New Employee's Department.." />
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button> <button type="button" class="btn btn-primary">Add</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="text-center">
+            <p>
+                Employee #1  <span class=" btn btn-danger glyphicon glyphicon-remove"></span>
+            </p>
+            <p>
+                Employee #2  <span class=" btn btn-danger glyphicon glyphicon-remove"></span>
+            </p>
+            <p>
+                Employee #3  <span class=" btn btn-danger glyphicon glyphicon-remove"></span>
+            </p>
+            <p>
+                Employee #4  <span class=" btn btn-danger glyphicon glyphicon-remove"></span>
+            </p>
+            <p>
+                Employee #5  <span class=" btn btn-danger glyphicon glyphicon-remove"></span>
+            </p>
+
+        </div>
+    </div>
+    <div class="col-md-6 column">
+        <h2 class="text-center">
+            List of Applicants: (based on clicks)
+        </h2>
+        <div class="text-center">
+            <p>
+                Applicant #1 <button role="button" class=" btn btn-primary glyphicon glyphicon-envelope" data-target="#MessageModal" data-toggle="modal"></button>
+
+                <div class="modal fade text-left" id="MessageModal" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header-primary">
+                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                                <h1 class="modal-title" id="myModalLabel">
+                                    <span class="glyphicon glyphicon-envelope"></span> Send Message
+                                </h1>
+                            </div>
+                            <div class="modal-body">
+                                <h4><strong>Title:</strong></h4>
+                                <input type="text" class="form-control" placeholder="Message Title.." /><br />
+                                <h4><strong>Body:</strong></h4>
+                                <textarea class="form-control" placeholder="Type your Message.."></textarea><br />
+                                <h4><strong>From:</strong></h4>
+                                <input type="text" class="form-control" placeholder="Your Name.." />
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button> <button type="button" class="btn btn-primary">Send</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </p>
+            <p>
+                Applicant #2  <span class=" btn btn-primary glyphicon glyphicon-envelope"></span>
+            </p>
+            <p>
+                Applicant #3  <span class=" btn btn-primary glyphicon glyphicon-envelope"></span>
+            </p>
+            <p>
+                Applicant #4  <span class=" btn btn-primary glyphicon glyphicon-envelope"></span>
+            </p>
+            <p>
+                Applicant #5  <span class=" btn btn-primary glyphicon glyphicon-envelope"></span>
+            </p>
+
+        </div>
+    </div>
+</div><br />

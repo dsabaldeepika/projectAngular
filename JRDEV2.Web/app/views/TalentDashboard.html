@@ -1,0 +1,114 @@
+﻿
+    <div class="talentcontainer" ng-init="GetJobsApplied()">
+    <div class="row">
+            <div class="col-md-12 column">
+            <h2 class="text-center text-success ">
+                <b> Dashboard </b>
+                </h2>
+            </div>
+        </div>
+    </div>
+<div class="row ">
+        <div class="col-md-2 column">
+            <img alt="140x140" src="http://lorempixel.com/140/140/" />
+            <div style="height : 10px"></div>
+
+            <div>
+            <a href="index.html#/talentprofile" class="btn btn-danger btn-block">My Profile</a>
+                <p></p><p></p>
+                <a href="index.html#/talentresume" class="btn btn-danger btn-block">View My Resumes</a>
+                <p></p><p></p>
+                <a href="index.html#/talentsettings" class="btn btn-danger btn-block">My Settings</a>
+                
+            </div>
+        </div>
+
+        <div class="col-md-10 column">
+            <form role="form">
+                <div class="well well-sm">
+                <h3><i><b>Jobs Applied For</b></i></h3>
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                            <th><h4>Company</h4></th>
+                            <th><h4> Job Title</h4></th>
+                            <th><h4>Applied On </h4></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="job in JobsApplied">
+                             
+                            <td><i><a href="#/jobview/{{job.jobId}}"> {{job.companyName}}</a></i></td>
+                            <td><i><a href="#/jobview/{{job.jobId}}">{{job.jobTitle}}</a></i></td>
+
+                                <td>{{job.dateSubmitted | date:'short'}}
+                                <td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </form>
+
+
+            <div class="well well-sm">
+                <h3>Job Cart</h3>
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                        <th><h4>Company</h4></th>
+                        <th><h4>Job Title</h4></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="job in SavedJobs">
+                        <td><i><a href="#/jobview/{{job.jobId}}"> {{job.companyName}}</a></i></td>
+                        <td><i><a href="#/jobview/{{job.jobId}}">{{job.jobTitle}}</a></i></td>
+
+                        <td>
+                            <!--<span><button type="button" class="btn btn-danger btn-xs" ng-click="deleteSavedJob()">Remove</button></span>-->
+                            <a href="#/talentdashboard" ng-click="deleteSavedJob(job.jobId)">Remove</a>
+                            <a href="#/jobview/{{job.jobId}}">Apply Now</a>
+</td>
+                        </tr>
+     
+                    </tbody>
+            </table> <hr />
+
+            <button ng-click="applyToAllJobs()" class="btn btn-success " data-target="#applyAllModal" data-toggle="modal">Apply to all Jobs in Job Cart</button>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="applyAllModal" role="dialog" aria-labelledby="applyAllModal" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                <h4 class="modal-title" id="myApplyAllModalLabel">
+                    Apply to All Jobs in Cart
+                </h4>
+            </div>
+
+            <div class="modal-body">
+
+                <label>Choose Your Resume</label><br /><br />
+
+                <!--DLR 5/6/14 created an Array of empty objects called application that would hold for each job
+                    bound to it, the properties resumeId and jobId, then created a nested ng-repeat and saved
+                    the values to the array-->
+                <div ng-repeat="job in SavedJobs" ng-init="application[$index]={};application[$index].JobId = job.jobId;application[$index].savedJobId= job.savedJobId">
+                 {{job.jobTitle}}{{job.jobId}}<br />
+                    <select ng-model="application[$index].ResumeId">
+                        <option ng-repeat="resume in AllResumes" value="{{resume.resumeId}}">{{resume.heading}}</option>
+                    </select><hr />
+            </div>
+
+
+        </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <input type="button" class="btn btn-primary" name="name" value="Submit Applications" ng-click="SubmitAllJobs(application)" data-dismiss="modal" />
+            </div>
+        </div>
+    </div>
+    </div>
+

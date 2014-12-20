@@ -1,0 +1,322 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>Your Profile</title>
+</head>
+<body>
+    <div id="fb-root"></div>
+    <script>
+        (function (d, s, id) {
+            var js, fjs = d.getElementsByTagName(s)[0];
+            if (d.getElementById(id)) return;
+            js = d.createElement(s); js.id = id;
+            js.src = "//connect.facebook.net/fb_LT/all.js#xfbml=1";
+            fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'));</script>
+    <script>!function (d, s, id) { var js, fjs = d.getElementsByTagName(s)[0]; if (!d.getElementById(id)) { js = d.createElement(s); js.id = id; js.src = "https://platform.twitter.com/widgets.js"; fjs.parentNode.insertBefore(js, fjs); } }(document, "script", "twitter-wjs");</script>
+
+
+    <div class="row clearfix">
+        <div class="col-md-2 column">
+            <img alt="140x140" src="http://lorempixel.com/140/140/" class="img-circle" /><br /><p></p>
+            <button class="btn btn-warning fa fa-wrench" data-target="#EditModal" data-toggle="modal"> Edit Profile</button>
+            <button class="btn btn-warning fa fa-wrench" data-target="#EditJob" data-toggle="modal">Add Job!!!!!</button>
+
+            <h4>Payment History</h4>
+            <label for="Company Name">Name: {{companyInfo.companyName}}</label><br /><input type="text" ng-model="click.ipAddress" /><br /><br />
+            <button role="button" class="btn btn-success glyphicon glyphicon-usd" data-target="#PaymentHistoryModal" data-toggle="modal"></button>
+            <button role="button" class="btn btn-warning glyphicon glyphicon-usd" ng-click="addNewClick(2)">Click Test</button>
+            <div class="modal fade" id="EditModal" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header-warning">
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                            <h1 class="modal-title" id="myModalLabel">
+                                <span class="fa fa-wrench"></span> Edit Company Profile
+                            </h1>
+                        </div>
+
+
+
+                        <div class="modal-body">
+
+
+
+                            <h4><strong>Name:</strong> {{companyInfo.companyName}}</h4><input type="text" ng-model="companyInfo.companyName" /><br /><br />
+                            <h4><strong>Address:</strong> {{companyInfo.streetAddress}}</h4><input type="text" ng-model="companyInfo.streetAddress" /><br /><br />
+                            <h4><strong>City:</strong> {{companyInfo.city}}</h4><input type="text" ng-model="companyInfo.city" /><br /><br />
+                            <h4><strong>State:</strong> {{companyInfo.state}}</h4><input type="text" ng-model="companyInfo.state" /><br /><br />
+                            <h4><strong>Zipcode:</strong> {{companyInfo.zipCode}}</h4><input type="text" ng-model="companyInfo.zipCode" /><br /><br />
+                            <h4><strong>Phone:</strong> {{companyInfo.phoneNumber}}</h4><input type="text" ng-model="companyInfo.phoneNumber" /><br /><br />
+                            <h4><strong>Email:</strong> {{companyInfo.emailAddress}}</h4><input type="text" ng-model="companyInfo.emailAddress" />
+                            <!--<br />
+                            <input type="file" id="exampleInputFile" />
+                            <p class="help-block">
+                                Upload a new Logo: .jpg and .png ONLY!
+                            </p>-->
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button> <button type="button" class="btn btn-primary" ng-click="updateCompany(companyInfo.companyId, companyInfo)" data-dismiss="modal">Save changes</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="modal fade" id="EditJob" role="dialog" aria-labelledby="myJobLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                            <h4 class="modal-title" id="myModalLabel">
+                                Edit Company Profile
+                            </h4>
+                        </div>
+
+
+
+                        <div class="modal-body">
+
+
+
+                            <label>Job Title: </label><br /><input type="text" ng-model="addJobForm.jobTitle" /><br /><br />
+                            <label>Job Description: </label><br /><input type="text" ng-model="addJobForm.description" /><br /><br />
+                            <label>Company Name: </label><br /><input type="text" ng-model="addJobForm.companyName" /><br /><br />
+
+                            <label>City: </label><br /><input type="text" ng-model="addJobForm.city" /><br /><br />
+                            <label>Experience Required:</label><br /><input type="text" ng-model="addJobForm.yearsExperience" /><br /><br />
+                            <label>Required Skills: </label><br /><input type="text" ng-model="addJobForm.requiredProgrammingSkills" /><br /><br />
+                            <label>Required Education: </label><br /><input type="text" ng-model="addJobForm.requiredEducationSkills" /><br /><br />
+                            <label>Salary Minimum: </label><br /><input type="text" ng-model="addJobForm.salaryMin" /><br /><br />
+                            <label>Salary Maximum: </label><br /><input type="text" ng-model="addJobForm.salaryMax" /><br /><br />
+                            <label>User ID: </label><br /><input type="text" ng-model="addJobForm.userId" /><br /><br />
+                            <label>JobStatus ID: </label><br /><input type="text" ng-model="addJobForm.jobStatusId" />
+
+
+                            <!--<br />
+                            <input type="file" id="exampleInputFile" />
+                            <p class="help-block">
+                                Upload a new Logo: .jpg and .png ONLY!
+                            </p>-->
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button> <button type="button" class="btn btn-primary" ng-click="addJob()" data-dismiss="modal">Save changes</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+
+
+        </div>
+        <div class="col-md-4 column">
+            <input type="search" class="form-control" placeholder="Search Applicants.." /><br />
+            <h4>{{companyInfo.companyName}}</h4>
+            <p>{{companyInfo.streetAddress}} {{companyInfo.city}}, {{companyInfo.state}} </p>
+            <p>{{companyInfo.phoneNumber}} - {{companyInfo.emailAddress}}</p>
+
+            <hr />
+
+
+
+
+            <div class="modal fade" id="PaymentHistoryModal" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header-success">
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                            <h1 class="modal-title" id="myModalLabel">
+                                <span class="glyphicon glyphicon-usd"></span> Payment History
+                            </h1>
+                        </div>
+                        <div class="modal-body">
+                            Payment History Goes Here
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6 column">
+            <h2 class="text-center">Messages</h2><br />
+            <p>Messages show up here</p>
+        </div>
+    </div><br />
+    <div class="row clearfix">
+
+    </div>
+
+    <!---------  Start Company Settings Table               --->
+
+    <div class="container">
+        <div class="row clearfix">
+            <div class="col-md-12 column">
+                <h3>
+                    Company Settings
+                </h3>
+                <dl>
+                    <dt>
+                        Setting Descriptions
+                    </dt>
+                    <dd>
+                        Turn a setting On/Off by checking the checkbox and click UPDATE
+                    </dd>
+                    <dd>
+                        Company Page - Allow Job Seekers to view Company page (default = visible).
+                    </dd>
+                    <dd>
+                        Click Browse - Allow Job Seekers to see that Company viewed their profile (default = on).
+                    </dd>
+                    <dd>
+                        Account Status - Deactivate Account (default = active).
+                    </dd>
+
+                </dl>
+
+
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+
+                            <th>
+                                Settings
+                            </th>
+                            <th>
+                                Status
+                            </th>
+                            <th>
+                                Control
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="active">
+                            <td>
+                                Current Email: {{companyInfo.emailAddress}}
+                            </td>
+                            <td>
+                                New Email: <input type="text" name="" />
+                            </td>
+                            <td>
+                                Confirm New Email: <input type="text" name="">
+                            </td>
+                        </tr>
+                        <tr class="active">
+
+                            <td>
+                                Update Password
+                            </td>
+                            <td>
+                                New PW: <input type="text" name="" />
+                            </td>
+                            <td>
+                                Confirm New PW: <input type="text" name="">
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td>
+                                Show Company Page
+                            </td>
+                            <td>
+                                Visible
+                            </td>
+                            <td>
+                                <input type="checkbox" name="CPage" checked> <button>Update</button>
+                            </td>
+                        </tr>
+                        <tr class="active">
+
+                            <td>
+                                Enable Click Browse
+                            </td>
+                            <td>
+                                On
+                            </td>
+                            <td>
+                                <input type="checkbox" name="ClickBrowse" checked> <button>Update</button>
+                            </td>
+                        </tr>
+                        <tr class="success">
+
+                            <td>
+                                Account Status
+                            </td>
+                            <td>
+                                Active
+                            </td>
+                            <td>
+                                <input type="checkbox" name="AcctStatus" checked> <button>Update</button>
+                            </td>
+                        </tr>
+
+                    </tbody>
+                </table>
+                <button type="button" class="btn  btn-danger btn-large center-block ">Update Company Account Settings</button>
+            </div>
+        </div>
+    </div>
+    <!---------  End Company Settings Table               --->
+    <!-- Modal -->
+    <button class="btn btn-warning " data-target="#ClickModal" data-toggle="modal">Click TEST Modal</button>
+    <div class="modal fade" id="ClickModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+                </div>
+                <div class="modal-body">
+                    <label>NumOfClicks: </label><br /><input type="text" ng-model="newClick.numOfClicks" /><br /><br />
+                    <label>JobId: </label><br /><input type="text" ng-model="newClick.jobId" /><br /><br />
+                    <label>IPAddress: </label><br /><input type="text" ng-model="newClick.ipAddress" /><br /><br />
+                </div>
+                
+                <div class="modal-body">
+                    <label>NumOfClicks: </label><br /><input type="text" ng-model="upClick.numOfClicks" /><br /><br />
+                    <label>JobId: </label><br /><input type="text" ng-model="upClick.jobId" /><br /><br />
+                    <label>IPAddress: </label><br /><input type="text" ng-model="upClick.ipAddress" /><br /><br />
+                    <input type="hidden" ng-model="upClick.clickId" />
+
+                </div>
+
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary" ng-click="addRecord()" data-dismiss="modal">Add New Record</button>
+                    <button type="button" class="btn btn-primary" ng-click="updateRecord(upClick)" data-dismiss="modal">Update Record</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Button trigger modal -->
+    <p></p>
+    Data Object: Number of Records - {{clickcounts.length}}
+    <!--{{c1}}-->
+    <table class="table table-bordered">
+        <tr><th>Record #</th><th>ClickID</th><th>NumClicks</th><th>IPAddress</th><th>JobId</th><th>Options</th></tr>
+        <tr ng-repeat="click in clickcounts track by $index">
+            <td>{{$index}}</td>
+            <td>{{click.clickId}}</td>
+            <td>{{click.numOfClicks}}</td>
+            <td>{{click.ipAddress}}</td>
+            <td>{{click.jobId}}</td>
+            <td><button class="btn  btn-danger " ng-click="deleteRecord(click.clickId)">Delete</button> / <button class="btn  btn-warning " data-target="#ClickModal" ng-click="updateModal(click)" data-toggle="modal">Update</button></td>
+        </tr>
+    </table>
+
+    <!--<div class="" ng-repeat="click in clickcounts">
+        Record #{{$index}}: {{click.numOfClicks}}
+    </div>-->
+
+    <button type="button" class="btn  btn-danger " ng-click="getRecords()">Get/Refresh Records</button>
+
+
+    <!--NEW "click" object: {{newClick}}-->
+    <p>testtest query call: {{testtest}}</p>
+    <p>.</p><p>.</p><p>.</p><p>.</p>
+</body>
+</html>

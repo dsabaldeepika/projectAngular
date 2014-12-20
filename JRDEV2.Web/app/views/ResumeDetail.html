@@ -1,0 +1,64 @@
+﻿<button class="btn btn-warning" data-toggle="modal" data-target="#resumeModal">
+    EDIT RESUME
+</button><br />
+
+<!--<h3>{{userInfo.FirstName}} {{userInfo.LastName}}'s Resume</h3>-->
+<div class="col-md-10 column" ng-init="getResume();">
+    <div class="well">
+        <!--Created by GeorgeW. 5/2/14
+        ===============================================================================-->
+        <br /><br />
+        <h2>{{Resume.heading}}</h2>
+        <br /><br />
+        <h3>Summary</h3>
+        <br /><br />
+        <p>{{Resume.summary}}</p>
+        <br /><br />
+        <h3>Work Experience</h3>
+        <br /><br />
+        <p>{{Resume.workExperience}}</p>
+        <br /><br />
+        <h3>Education</h3>
+        <br /><br />
+        <p>{{Resume.education}}</p>
+        <br /><br />
+        <h3>Other Information</h3>
+        <br /><br />
+        <p>{{Resume.otherInfo}}</p>
+    </div>
+    <!--=====================================================================================-->
+
+
+    <!-- Modal -->
+    <div class="modal fade" id="resumeModal" tabindex="-1" role="dialog" aria-labelledby="resumeModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title" id="resumeModelLabel">Edit Resume</h4>
+                </div>
+                <div class="modal-body">
+                    Heading:<br />
+                    <textarea rows="5" cols="80" ng-model="newResumeVM.heading" ng-init={{Resume.heading}}></textarea>
+                    <br /><br />
+                    Summary:<br />
+                    <textarea rows="5" cols="80" ng-model="newResumeVM.summary" ng-init="getresume();"></textarea>
+                    <br /><br />
+                    Work Experience:<br />
+                    <textarea rows="5" cols="80" ng-model="newResumeVM.workExperience"></textarea>
+                    <br /><br />
+                    Education:<br />
+                    <textarea rows="5" cols="80" ng-model="newResumeVM.education"></textarea>
+                    <br /><br />
+                    Other Information:<br />
+                    <textarea rows="5" cols="80" ng-model="newResumeVM.otherInfo"></textarea><br /><br />
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-success" ng-click="updateResume(newResumeVM)" data-dismiss="modal">Update Resume</button>
+                    <button type="button" class="btn btn-danger" ng-click="deleteResume()" data-dismiss="modal">Delete Resume</button>
+                    <button type="button" class="btn btn-warning" ng-click="cancelUpdateResume()" data-dismiss="modal">Cancel</button><br />
+                </div>
+            </div>
+        </div>
+    </div>
+</div> <!--end col-md-10 column-->

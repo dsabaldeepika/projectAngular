@@ -1,0 +1,12 @@
+﻿body {
+
+}
+
+#bgimg {
+    background-image:url('/app/images/tag-line.png');
+    background-color:#fff;
+    height:197px;
+    
+    background-repeat: no-repeat;
+    background-position: center;
+}

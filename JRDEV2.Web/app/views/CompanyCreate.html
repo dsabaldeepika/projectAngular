@@ -1,0 +1,131 @@
+﻿
+<h2 align="center">Company Registration</h2>
+
+<div class="jumbotron">
+    <div class="row clearfix">
+        <div class="col-md-12 column">
+            <div class="well">
+                <form name="companyCreateForm" rc-submit="createCompany()" novalidate rc-disabled="rc.form.submitInProgress">
+                    <label>Company Name</label><br />
+                    <input type="text" ng-model="company.CompanyName" size="80" name="CompanyName" required />
+                    <span ng-if="company.CompanyName == null" class="required">&nbsp;*</span>
+                    <span ng-if="!(company.CompanyName == null)" class="hidden_required">&nbsp;*</span>
+                    <br /><br />
+                    <label>Company Admin</label><br />
+                    <input type="text" ng-model="company.FirstName" placeholder="First" name="FirstName" required />
+                    <span ng-if="company.FirstName == null" class="required">&nbsp;*</span>
+                    <span ng-if="!(company.FirstName == null)" class="hidden_required">&nbsp;*</span>
+                    &nbsp;&nbsp;<input type="text" ng-model="company.LastName" placeholder="Last" name="LastName" required />
+                    <span ng-if="company.LastName == null" class="required">&nbsp;*</span>
+                    <span ng-if="!(company.LastName == null)" class="hidden_required">&nbsp;*</span>
+                    <br /><br />
+                    <label>Company Login</label><br />
+                    <input type="text" ng-model="company.UserName" placeholder="User Name" name="UserName" ng-pattern="/^[a-zA-Z0-9]+$/" required />
+                    <span ng-if="company.UserName == null" class="required">&nbsp;*</span>
+                    <span ng-if="!(company.UserName == null)" class="hidden_required">&nbsp;*</span>
+                    &nbsp;&nbsp;<input type="password" ng-model="company.Password" placeholder="Password" name="Password" ng-pattern="/^[\s\S]{6,}$/" required />
+                    <span ng-if="company.Password == null" class="required">&nbsp;*</span>
+                    <span ng-if="!(company.Password == null)" class="hidden_required">&nbsp;*</span>
+                    <br /><br />
+                    <label>Company Address</label><br />
+                    <input type="text" ng-model="company.StreetAddress" size="80" placeholder="Street Address" name="StreetAddress" required/>
+                    <span ng-if="company.StreetAddress == null" class="required">&nbsp;*</span>
+                    <span ng-if="!(company.StreetAddress == null)" class="hidden_required">&nbsp;*</span><br />
+                    <input type="text" ng-model="company.StreetAddress2" size="80" placeholder="Street Address Line 2" name="StreetAddress2"/><br />
+                    <input type="text" ng-model="company.City" placeholder="City" name="City" required />
+                    <span ng-if="company.City == null" class="required">&nbsp;*</span>
+                    <span ng-if="!(company.City == null)" class="hidden_required">&nbsp;*</span>
+                    &nbsp;&nbsp;<select ng-model="company.State" name="State" required>
+                        <option value="AL">AL</option>
+                        <option value="AK">AK</option>
+                        <option value="AZ">AZ</option>
+                        <option value="AR">AR</option>
+                        <option value="CA">CA</option>
+                        <option value="CO">CO</option>
+                        <option value="CT">CT</option>
+                        <option value="DE">DE</option>
+                        <option value="DC">DC</option>
+                        <option value="FL">FL</option>
+                        <option value="GA">GA</option>
+                        <option value="HI">HI</option>
+                        <option value="ID">ID</option>
+                        <option value="IL">IL</option>
+                        <option value="IN">IN</option>
+                        <option value="IA">IA</option>
+                        <option value="KS">KS</option>
+                        <option value="KY">KY</option>
+                        <option value="LA">LA</option>
+                        <option value="ME">ME</option>
+                        <option value="MD">MD</option>
+                        <option value="MA">MA</option>
+                        <option value="MI">MI</option>
+                        <option value="MN">MN</option>
+                        <option value="MS">MS</option>
+                        <option value="MO">MO</option>
+                        <option value="MT">MT</option>
+                        <option value="NE">NE</option>
+                        <option value="NV">NV</option>
+                        <option value="NH">NH</option>
+                        <option value="NJ">NJ</option>
+                        <option value="NM">NM</option>
+                        <option value="NY">NY</option>
+                        <option value="NC">NC</option>
+                        <option value="ND">ND</option>
+                        <option value="OH">OH</option>
+                        <option value="OK">OK</option>
+                        <option value="OR">OR</option>
+                        <option value="PA">PA</option>
+                        <option value="RI">RI</option>
+                        <option value="SC">SC</option>
+                        <option value="SD">SD</option>
+                        <option value="TN">TN</option>
+                        <option value="TX">TX</option>
+                        <option value="UT">UT</option>
+                        <option value="VT">VT</option>
+                        <option value="VA">VA</option>
+                        <option value="WA">WA</option>
+                        <option value="WV">WV</option>
+                        <option value="WI">WI</option>
+                        <option value="WY">WY</option>
+                    </select>
+                    <span ng-if="company.State == null" class="required">&nbsp;*</span>
+                    <span ng-if="!(company.State == null)" class="hidden_required">&nbsp;*</span>
+                    &nbsp;&nbsp;<input type="text" ng-model="company.ZipCode" name="ZipCode" placeholder="Zip Code" />
+                    <span ng-if="company.ZipCode == null" class="required">&nbsp;*</span>
+                    <span ng-if="!(company.ZipCode == null)" class="hidden_required">&nbsp;*</span>
+                    <br /><br />
+                    <label>Company Description</label><br />
+                    <textarea ng-model="company.Description" rows="5" name="Description" cols=" 80"></textarea>
+                    <br /><br />
+                    <label>Social Media Links</label><br />
+                    <label>Website</label><br />
+                    <input type="url" ng-model="company.MainUrl" size="80" name="MainUrl" />
+                    <br />
+                    <label>Facebook</label><br />
+                    <input type="url" ng-model="company.FacebookUrl" size="80" name="FacebookUrl" />
+                    <br />
+                    <label>LinkedIn</label><br />
+                    <input type="url" ng-model="company.LinkedinUrl" size="80" name="LinkedinUrl" />
+                    <br />
+                    <label>Twitter</label><br />
+                    <input type="url" ng-model="company.TwitterUrl" size="80" name="TwitterUrl" />
+                    <br />
+                    <label>Google+</label><br />
+                    <input type="url" ng-model="company.GoogleplusUrl" size="80" name="GoogleplusUrl" />
+                    <br />
+                    <br />
+                    <label>Company Logo</label><br />
+                    <input type="file" ng-model="company.Logo" name="Logo" size="80" />
+                    <br />
+                    <br />
+                    <label>Invite Company Admins</label><br />
+                    <input type="email" ng-model="company.CompanyUserEmail" size="80" name="CompanyUserEmail" placeholder="Email" />
+                    <input type="email" ng-model="company.CompanyUserEmail2" size="80" name="CompanyUserEmail2" placeholder="Email" />
+                    <br /><br />
+                    <input type="submit" class="btn btn-success btn-lg" value="SUBMIT" data-loading-text="Please Wait..." ng-disabled="CompanyCreateForm.$invalid || isUnchanged(company)">
+                    <div ng-if="companyCreateForm.$invalid || isUnchanged(company)"><span style="color:red">* - Please complete all required fields</span></div>
+                </form>
+            </div> <!--end well-->
+        </div> <!--end col-md-12 column-->
+    </div> <!--end row clearfix-->
+</div> <!--end container-->

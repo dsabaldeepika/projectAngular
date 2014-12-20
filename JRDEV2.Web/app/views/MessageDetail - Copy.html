@@ -1,0 +1,67 @@
+﻿
+<div class="talentcontainer" ng-init="getMessage()">
+    <div class="row clearfix">
+        <div class="col-md-12 column">
+            <h3 class="text-center">
+                Message Inbox
+            </h3>
+        </div>
+    </div>
+</div>
+<div class="row clearfix">
+    <div class="col-md-2 column">
+        <img alt="140x140" src="http://lorempixel.com/140/140/" />
+        <div style="height : 10px"></div>
+
+        <div>
+            <a href="index.html#/talentprofile" class="btn btn-danger btn-block">View My Profile</a>
+            <p></p><p></p>
+            <a href="index.html#/talentresume" class="btn btn-danger btn-block">View My Resume</a>
+            <p></p><p></p>
+            <a href="index.html#/talentsettings" class="btn btn-danger btn-block">My Settings</a>
+        </div>
+    </div>
+
+    <!--//ray was here\\-->
+    <div class="col-md-10 column">
+        <form role="form" class="table table-striped">
+            <div class="well well-sm">
+                <h3>{{message.subject}}</h3>
+                Sent by: {{message.from}} <br />
+                {{message.body}}
+                <hr />
+                <!--<button class="btn btn-default" ng-click="reply()">Reply</button>-->
+                <button class="btn btn-primary btn-md" data-toggle="modal" ng-click="reply()" data-target="#myModal">
+                    Reply
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
+    <!--<div class="col-md-8 column">
+        <div class="well well-sm">
+            To: <input type="text" ng-model="newMessage.toId" /> <br />
+            Subject: <input type="text" ng-model="newMessage.subject" /> <br />
+            Body: <textarea ng-model="newMessage.body"></textarea><br />
+            <button ng-click="submitMessage()">Reply</button>-->
+
+        <!--</div>
+    </div>
+</div>-->
+    <!--//ray was here\\-->
+<div class="modal fade" id="myModal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title">Reply Message</h4>
+            </div>
+            <div class="modal-body">
+                Subject: <input type="text" ng-model="newMessage.subject" /> <br />
+                Body: <textarea style="margin-left: 0px; margin-right: 0px; height: 180px; width: 560px;" ng-model="newMessage.body"></textarea><br />
+                
+                <button type="button" style="align-self: center;" data-dismiss="modal" ng-click="submitMessage()" class="btn btn-success">Send Message</button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->

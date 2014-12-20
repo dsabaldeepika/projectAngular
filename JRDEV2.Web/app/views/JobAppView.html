@@ -1,0 +1,74 @@
+﻿
+<div class="container">
+    <div class="row clearfix">
+        <div class="col-md-12 column">
+        </div>
+    </div>
+    <div class="row clearfix">
+        <div class="col-md-2 column">
+            <img alt="140x140" height="150" width="150" ng-src="{{companyInfo.logo}}" class="img-circle" /> <div style="padding-top: 30px"> <button type="button" class="btn btn-default" ng-click="toCompanyProfile()">Company Profile</button></div> <div style="padding-top:15px; padding-bottom: 30px"> <button type="button" class="btn btn-default">Company Inbox</button></div>
+            <div class="panel-group" id="panel-952643">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <a class="panel-title collapsed" data-toggle="collapse" data-parent="#panel-952643" href="#panel-element-772675">Administrators</a>
+                    </div>
+                    <div id="panel-element-772675" class="panel-collapse collapse">
+                        <div class="panel-body">
+                            Employees. .
+                        </div>
+                    </div>
+                </div>
+                <!--//ray was here\\-->
+                <!--<div class="panel panel-default">
+                    <div class="panel-heading">
+                        <a class="panel-title collapsed" data-toggle="collapse" data-parent="#panel-952643" href="#panel-element-347856">Collapsible Group Item #2</a>
+                    </div>
+                    <div id="panel-element-347856" class="panel-collapse collapse">
+                        <div class="panel-body">
+                            Anim pariatur cliche...
+                        </div>
+                    </div>
+                </div>-->
+            </div>
+
+        </div>
+        <!--//ray was here\\-->
+        <div class="col-md-6 column col-md-offset-2">
+            <h3 style="padding-bottom:20px;">
+                Applicant for Job
+            </h3>
+            <dl ng-repeat="applicant in getApplicants | filter: {id: ApplicantId}">
+                <dt style="padding-bottom: 10px">
+                    <label style="text-decoration:underline"> Applicants Name</label>
+                </dt>
+                <dd style="padding-bottom: 20px">
+                    {{applicant.name}}
+                </dd>
+                <dt style="padding-bottom: 10px">
+                    <label style="text-decoration:underline">Message</label>
+                </dt>
+                <dd style="padding-bottom: 20px">
+                    {{applicant.resume.summary}}
+                </dd>
+                <dt style="padding-top: 10px">
+                    <label style="text-decoration:underline">Resume</label>
+                </dt>
+                <dd style="padding-bottom: 20px">
+                    {{applicant.resume.workExperience}}
+                </dd>
+                <dt style="padding-top: 20px">Notes</dt>
+                <dd>
+
+                </dd>
+                <dt style="padding-top:20px">
+                    Or. . .
+                </dt>
+                <!--//ray was here\\-->
+            </dl> <button type="button" class="btn btn-default">Download Resume</button>
+            <dl></dl>
+            <button type="button" ng-click="backToList(ApplicantId)" class="btn btn-default">Back to Applicants</button>
+        </div>
+        <div class="col-md-4 column">
+        </div>
+    </div>
+</div>

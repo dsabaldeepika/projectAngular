@@ -1,0 +1,31 @@
+﻿<!-- Button trigger modal -->
+<button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
+    Call modal from send message method
+</button>
+
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title" id="myModalLabel">Messaging</h4>
+            </div>
+            <div class="modal-body">
+                <label>Subject</label>
+                <input type="text" style="height:50px; width:550px" placeholder="Subject" />
+            </div>
+            <div class="modal-body">
+                <div>
+                    <label>Message</label><br />
+                    <textarea rows="10" cols="88" placeholder="Message"></textarea>
+                    <!--<input style="height:250px; width:550px; "/>-->
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Call Send Msg()</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

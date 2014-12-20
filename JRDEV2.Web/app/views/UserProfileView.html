@@ -1,0 +1,193 @@
+﻿
+<div class="container">
+
+    <nav class="navbar navbar-default" role="navigation">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                <span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/app/Index.html#/front">JrDevs.co</a>
+        </div>
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav">
+                <li class="active"><a href="/app/Index.html#/front"><span class="glyphicon glyphicon-home"></span> Dashboard</a></li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li>
+                    <a href="/app/Index.html#/register">Register</a>
+                </li>
+                <li>
+                    <a href="/app/Index.html#/login">Login</a>
+                </li>
+                <li class="dropdown">
+                    <a href="/front.html" class="dropdown-toggle" data-target="#InboxDropdown" data-toggle="dropdown">
+                        <span class="glyphicon glyphicon-envelope"></span> Inbox <span class="label label-info">32</span>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a href="#"><span class="label label-warning">4:00 AM</span> Favourites Snippet</a></li>
+                        <li><a href="#"><span class="label label-warning">4:30 AM</span> Email marketing</a></li>
+                        <li>
+                            <a href="#">
+                                <span class="label label-warning">5:00 AM</span> Subscriber focused email
+                                design
+                            </a>
+                        </li>
+                        <li class="divider"></li>
+                        <li><a href="#" class="text-center">View All</a></li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a href="/front.html" class="dropdown-toggle" data-target="#UserDropdown" data-toggle="dropdown">
+                        <span class="glyphicon glyphicon-user"></span> Admin <b class="caret"></b>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a href="#"><span class="glyphicon glyphicon-user"></span> Profile</a></li>
+                        <li><a href="#"><span class="glyphicon glyphicon-cog"></span> Settings</a></li>
+                        <li class="divider"></li>
+                        <li><a href="#"><span class="glyphicon glyphicon-off"></span> Logout</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+        <!-- /.navbar-collapse -->
+    </nav>
+</div>
+<div class="row clearfix">
+    <div class="col-md-2 column">
+        <h4><!--{{user.Username}}'s--> Profile</h4>
+        <img alt="140x140" src="http://lorempixel.com/140/140/" class="img-circle" /><br /><p></p>
+        <button id="modal-667458" role="button" class=" btn btn-warning fa fa-wrench" data-target="#EditModal" data-toggle="modal"> Edit Profile</button>
+        <div class="modal fade" id="EditModal" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header-warning">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                        <h1 class="modal-title" id="myModalLabel">
+                            <span class="fa fa-wrench"></span> Edit Profile
+                        </h1>
+                    </div>
+                    <div class="modal-body">
+                        <form ng-submit="submitUser()">
+                            <h4><strong>Username:</strong></h4>
+                            <input class="form-control" type="email" ng-model="user.Username" placeholder="JohnDoe@email.com" /><br />
+                            <h4><strong>Password:</strong></h4>
+                            <input class="form-control" type="password" ng-model="user.Password" placeholder="123456" /><br />
+                            <h4><strong>First Name:</strong></h4>
+                            <input class="form-control" type="text" ng-model="user.FirstName" placeholder="First Name" /><br />
+                            <h4><strong>Last Name:</strong></h4>
+                            <input class="form-control" type="text" ng-model="user.LastName" placeholder="Last Name" /><br />
+                            <h4><strong>Looking for a Job:</strong></h4>
+                            <input type="radio" name="currentlyLooking" ng-model="user.CurrentlyLooking" value="true">Yes
+                            <input type="radio" name="currentlyLooking" ng-model="user.CurrentlyLooking" value="false">No<br />
+                            <h4><strong>Desired Salary:</strong></h4>
+                            <input class="form-control" type="number" ng-model="user.DesiredSalary" placeholder="$50,000" /><br />
+                            <h4><strong>Willing to Relocate:</strong></h4>
+                            <input type="radio" name="willRelocate" ng-model="user.WillRelocate" value="true">Yes
+                            <input type="radio" name="willRelocate" ng-model="user.WillRelocate" value="false">No<br />
+                            <label for="exampleInputFile"><strong>Upload a Resume</strong></label><input type="file" id="exampleInputFile" />
+                            <p class="help-block">
+                                .doc .docx and .pdf ONLY
+                            </p>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button> <button type="button" class="btn btn-primary">Save changes</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4 column">
+        <!--<h4>{{user.FirstName}} {{user.LastName}} </h4>
+        <h4>{{user.Username}}</h4>-->
+    </div>
+    <div class="col-md-6 column">
+        <h2 class="text-center">Messages</h2><br />
+        <table class="table table-hover table-striped">
+            <tr>
+                <th>Subject:</th>
+                <th>Body:</th>
+            </tr>
+            <tr ng-repeat="message in messageArray">
+                <td>{{message.msgSubject}}</td>
+                <td>{{message.msgBody}}</td>
+            </tr>
+        </table>
+    </div>
+</div>
+<div class="row clearfix">
+    <div class="col-md-6 column" ng-init="initJobSave()">
+        <h2 class="text-center">
+            Jobs You've Saved: <span class="fa fa-2x fa-search"></span>
+        </h2>
+        <table class="table table-striped table-responsive">
+            <tr ng-repeat="singleJobSave in singleJobSaves">
+                <th>Job Title</th>
+                <th>Company</th>
+                <th>Job Description</th>
+                <th>Job City</th>
+                <th>Date Created</th>
+            </tr>
+
+            <tr>
+                <td>{{singleJobSave.jobTitle}}</td>
+                <td>{{singleJobSave.companyName}}</td>
+                <td>{{singleJobSave.description}}</td>
+                <td>{{singleJobSave.city}}</td>
+                <td>{{singleJobSave.dateCreated | date : date : shortDate}}</td>
+            </tr>
+        </table>
+    </div>
+    <div class="col-md-6 column">
+        <div class="jumbotron" ng-init="initJobCart()">
+            <h2 class="text-center">
+                Your Job Cart <span class="fa fa-2x fa-shopping-cart"></span>
+            </h2>
+            <table class="table table-striped table-condensed table-responsive">
+                <tr>
+                    <th>Job Id</th>
+                    <th>Job Title</th>
+                    <th>Company</th>
+                </tr>
+                <tr ng-repeat="singleJobCart in singleJobCarts">
+                    <td>{{singleJobCart.jobId}}</td>
+                    <td><a ng-click="getJobCartModal(singleJobCart)">{{singleJobCart.jobTitle}}</a></td>
+                    <td>{{singleJobCart.companyName}}</td>
+                </tr>
+            </table>
+        </div>
+        <!--MODEL FOR JOB CART-->
+        <script type="text/ng-template" id="myModalContent">
+            <div class="modal-body">
+                <h3>Title</h3>
+                <strong>{{currentItem.jobTitle}}</strong>
+                <h3>Company</h3>
+                <strong>{{currentItem.companyName}}</strong>
+                <h3>Job Descrption:</h3>
+                <strong>{{currentItem.description}}</strong>
+                <h3>Job Start Date</h3>
+                <strong>{{currentItem.startDate}}</strong>
+                <h3>Date Created</h3>
+                <strong>{{currentItem.dateCreated}}</strong>
+                <h3>Job Id</h3>
+                <strong>{{currentItem.jobId}}</strong>
+                <h3>Requirements:</h3>
+                <ul>
+                    <li>Years Expierience: <strong>{{currentItem.yearsExperience}}</strong></li>
+                    <li>Required Programming Skills: <strong>{{currentItem.requiredProgrammingSkills}}</strong></li>
+                    <li>Required Education Skills: <strong>{{singleJobCartModal.requiredEducationSkills}}</strong></li>
+                </ul>
+                <ul>
+                    <li>Salary Minimum: <strong>{{currentItem.salaryMin}}</strong></li>
+                    <li>Salary Maximum: <strong>{{currentItem.salaryMax}}</strong></li>
+                </ul>
+                <p>Posted by <a><strong>{{currentItem.companyName}}</strong></a></p><p class="help-block">5 days ago</p>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-primary" ng-click="ok()">OK</button>
+            </div>
+        </script>
+    </div>
+</div>
